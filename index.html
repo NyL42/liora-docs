@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liora — Pitch</title>
+<style>
+:root{
+  --ink:#2B2722; --ink-soft:#6B6357; --ink-faint:#9A9183;
+  --line:#C9BFAE; --line-soft:#DED6C6;
+  --paper:#FFFFFF; --cream:#F6F2EA; --stone:#E9E3D7;
+  --accent:#5A6B57; --accent-deep:#495943; --accent-soft:#E5E9DF;
+  --gold:#9A7B45; --gold-soft:#EFE6D4; --terra:#9A4B3A;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+  --sans:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{height:100%;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:var(--serif);color:var(--ink);background:#1c1a16;overflow:hidden;}
+.deck{position:fixed;inset:0;}
+.slide{position:absolute;inset:0;display:none;flex-direction:column;justify-content:center;
+  padding:6vh 7vw;background:var(--paper);}
+.slide.active{display:flex;}
+.kicker{font-family:var(--sans);font-size:1.05vw;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6vh;}
+.title{font-size:4.3vw;font-weight:700;line-height:1.05;letter-spacing:-.01em;margin-bottom:2vh;}
+.title.sm{font-size:3.2vw;}
+.sub{font-size:1.7vw;color:var(--ink-soft);line-height:1.4;max-width:70vw;}
+.pfoot{position:absolute;left:7vw;bottom:3.4vh;font-family:var(--sans);font-size:.95vw;letter-spacing:.12em;color:var(--ink-faint);text-transform:uppercase;}
+.pnum{position:absolute;right:7vw;bottom:3.4vh;font-family:var(--sans);font-size:.95vw;color:var(--ink-faint);}
+.brandmk{position:absolute;right:7vw;top:4vh;font-family:var(--serif);font-weight:700;font-size:1.5vw;color:var(--accent);}
+.brandmk span{color:var(--gold);}
+
+/* slides escuros */
+.slide.dark{background:var(--accent-deep);}
+.slide.dark .title,.slide.dark .big{color:#fff;}
+.slide.dark .sub{color:#DCE4D8;}
+.slide.dark .kicker{color:var(--gold-soft);}
+.slide.dark .pfoot,.slide.dark .pnum{color:#9FB098;}
+.slide.dark .brandmk{color:#fff;}
+
+/* stat tiles */
+.stats{display:flex;gap:2.2vw;margin-top:1.5vh;flex-wrap:wrap;}
+.stat{flex:1;min-width:12vw;background:var(--cream);border:1px solid var(--line-soft);border-top:4px solid var(--accent);border-radius:10px;padding:2.4vh 1.6vw;}
+.stat .num{font-size:3.6vw;font-weight:700;color:var(--accent-deep);line-height:1;}
+.stat .num.gold{color:var(--gold);}
+.stat .num.terra{color:var(--terra);}
+.stat .lbl{font-family:var(--sans);font-size:1.05vw;color:var(--ink-soft);margin-top:1vh;line-height:1.3;}
+.take{font-family:var(--sans);font-size:1.35vw;color:var(--accent-deep);margin-top:2.4vh;font-weight:600;}
+.take::before{content:"▸ ";color:var(--gold);}
+
+/* two columns */
+.two{display:flex;gap:3vw;margin-top:1.5vh;}
+.col{flex:1;background:var(--cream);border:1px solid var(--line-soft);border-radius:10px;padding:2.2vh 1.8vw;}
+.col.gold{background:var(--gold-soft);}
+.col h3{font-family:var(--sans);font-size:1.15vw;text-transform:uppercase;letter-spacing:.06em;color:var(--accent-deep);margin-bottom:1.2vh;}
+.col.gold h3{color:var(--gold);}
+.col ul{list-style:none;}
+.col li{font-size:1.4vw;padding:.7vh 0 .7vh 1.4vw;position:relative;color:var(--ink);}
+.col li::before{content:"—";position:absolute;left:0;color:var(--accent);}
+
+/* níveis */
+.tiers{display:flex;gap:2vw;margin-top:2vh;}
+.tier{flex:1;border:1px solid var(--line);border-radius:10px;padding:2.4vh 1.6vw;background:var(--cream);}
+.tier .tn{font-size:2vw;font-weight:700;color:var(--accent-deep);}
+.tier .td{font-family:var(--sans);font-size:1.1vw;color:var(--ink-soft);margin-top:1vh;line-height:1.35;}
+.tier.mid{border-top:4px solid var(--accent);}
+.tier.top{background:var(--accent-soft);}
+
+/* chart area */
+.chartbox{margin-top:1.5vh;width:100%;}
+.chartbox svg{width:100%;height:auto;max-height:52vh;}
+.ask{background:var(--accent-deep);color:#fff;border-radius:12px;padding:2.6vh 2.2vw;margin-top:2vh;}
+.ask .a1{font-size:2.3vw;font-weight:700;}
+.ask .a2{font-family:var(--sans);font-size:1.25vw;color:#DCE4D8;margin-top:1vh;}
+.split{display:flex;gap:3vw;align-items:center;}
+.split .l{flex:1.3;} .split .r{flex:1;}
+
+/* nav */
+.nav{position:fixed;bottom:2.2vh;right:2vw;display:flex;gap:8px;z-index:10;}
+.nav button{font-family:var(--sans);font-size:14px;border:1px solid var(--line);background:var(--paper);color:var(--ink);
+  width:34px;height:30px;border-radius:6px;cursor:pointer;}
+.nav button:hover{background:var(--cream);}
+.hint{position:fixed;bottom:2.6vh;left:2vw;font-family:var(--sans);font-size:11px;color:#8a8474;z-index:10;}
+
+@media print{
+  @page{size:A4 landscape;margin:0;}
+  html,body{overflow:visible;background:#fff;}
+  .deck{position:static;}
+  .slide{position:relative;display:flex!important;width:297mm;height:209mm;break-after:page;padding:16mm 20mm;}
+  .kicker{font-size:11pt;} .title{font-size:34pt;} .title.sm{font-size:26pt;} .sub{font-size:14pt;max-width:none;}
+  .stat .num{font-size:30pt;} .stat .lbl{font-size:9.5pt;} .take{font-size:12pt;}
+  .col li{font-size:12pt;} .col h3{font-size:10pt;} .tier .tn{font-size:16pt;} .tier .td{font-size:9.5pt;}
+  .ask .a1{font-size:19pt;} .ask .a2{font-size:10.5pt;} .brandmk{font-size:12pt;}
+  .pfoot,.pnum{font-size:8pt;} .chartbox svg{max-height:120mm;}
+  .nav,.hint{display:none;}
+}
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+<!-- 1 CAPA -->
+<section class="slide dark active">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Gheller &amp; Co.</div>
+  <div class="title">Liora</div>
+  <div class="sub">Mobilidade residencial internacional, sem fricção.<br>Um perfil único que organiza a mudança de país — do bairro ao profissional certo.</div>
+  <div class="pfoot">Pitch · reunião de investidores</div><div class="pnum">01</div>
+</section>
+
+<!-- 2 PROBLEMA -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">O problema</div>
+  <div class="title sm">Mudar de país é fragmentado.</div>
+  <div class="two">
+    <div class="col"><h3>Para quem se muda</h3><ul>
+      <li>Portais isolados, um por país e idioma</li>
+      <li>Repete as mesmas informações a cada contato</li>
+      <li>Difícil avaliar bairro e confiar em profissionais</li>
+    </ul></div>
+    <div class="col gold"><h3>Para o outro lado</h3><ul>
+      <li>Profissionais recebem contatos sem contexto</li>
+      <li>Tempo perdido em triagem</li>
+      <li>Quem oferta não alcança a demanda internacional</li>
+    </ul></div>
+  </div>
+  <div class="take">Lento, inseguro e caro — para todos os lados.</div>
+  <div class="pfoot">O problema</div><div class="pnum">02</div>
+</section>
+
+<!-- 3 SOLUÇÃO -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">A solução</div>
+  <div class="title sm">Um perfil único de mobilidade.</div>
+  <div class="sub">Recomenda bairros, organiza a busca e conecta a pessoa ao profissional certo — com o contexto já pronto. Personalizado por cliente.</div>
+  <div class="tiers">
+    <div class="tier"><div class="tn">Liora</div><div class="td">Experiência digital base: perfil, bairros e Q&amp;A.</div></div>
+    <div class="tier mid"><div class="tn">Personnalisé</div><div class="td">Acompanhamento assistido, do estudante a quem investe alto.</div></div>
+    <div class="tier top"><div class="tn">Gheller Private</div><div class="td">Nível curado, por relação e adequação.</div></div>
+  </div>
+  <div class="pfoot">A solução</div><div class="pnum">03</div>
+</section>
+
+<!-- 4 VALIDAÇÃO USUÁRIO -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Validação · quem se muda &nbsp;|&nbsp; amostra de 75</div>
+  <div class="title sm">A dor é real e recorrente.</div>
+  <div class="chartbox" id="ch-user"></div>
+  <div class="take">Difícil, repetitivo e mal atendido — a maioria está insatisfeita hoje.</div>
+  <div class="pfoot">Validação · usuários</div><div class="pnum">04</div>
+</section>
+
+<!-- 5 VALIDAÇÃO PROFISSIONAL -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Validação · profissionais &nbsp;|&nbsp; amostra de 25</div>
+  <div class="title sm">O outro lado sofre igual.</div>
+  <div class="stats">
+    <div class="stat"><div class="num gold">56%</div><div class="lbl">recebem contatos sem informação suficiente</div></div>
+    <div class="stat"><div class="num gold">60%</div><div class="lbl">alto impacto do tempo perdido em triagem</div></div>
+    <div class="stat"><div class="num gold">68%</div><div class="lbl">lidam com expectativas desalinhadas</div></div>
+  </div>
+  <div class="take">Os dois lados têm razão para pagar por uma solução.</div>
+  <div class="pfoot">Validação · profissionais</div><div class="pnum">05</div>
+</section>
+
+<!-- 6 MERCADO -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Oportunidade</div>
+  <div class="title sm">Mobilidade formal ≠ mobilidade prática.</div>
+  <div class="stats">
+    <div class="stat"><div class="num">+55%</div><div class="lbl">preços de imóveis na UE desde 2010 (Eurostat)</div></div>
+    <div class="stat"><div class="num">26,5%</div><div class="lbl">dos jovens em moradias superlotadas</div></div>
+    <div class="stat"><div class="num">16 mi</div><div class="lbl">de participantes do Erasmus+ desde 1987</div></div>
+  </div>
+  <div class="take">O direito de circular existe; a facilidade de se estabelecer, não.</div>
+  <div class="pfoot">Oportunidade</div><div class="pnum">06</div>
+</section>
+
+<!-- 7 MODELO DE RECEITA -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Modelo de receita</div>
+  <div class="title sm">Receita dos dois lados — e dos dados.</div>
+  <div class="two">
+    <div class="col"><h3>Demanda</h3><ul>
+      <li>Taxa de ativação (Liora)</li>
+      <li>Mensalidade (Personnalisé)</li>
+      <li>Atendimento premium (Gheller Private)</li>
+    </ul></div>
+    <div class="col gold"><h3>Oferta &amp; dados</h3><ul>
+      <li>Comissão no redirecionamento a portais</li>
+      <li>Listagens próprias de imóveis</li>
+      <li>Licenciamento de inteligência de demanda</li>
+    </ul></div>
+  </div>
+  <div class="take">Várias fontes reforçando o mesmo ativo: o perfil de mobilidade.</div>
+  <div class="pfoot">Modelo de receita</div><div class="pnum">07</div>
+</section>
+
+<!-- 8 FINANCEIRO TRAJETÓRIA -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Plano financeiro · cenário-base (€ mil)</div>
+  <div class="title sm">Enxutos até o equilíbrio no Ano 5.</div>
+  <div class="chartbox" id="ch-fin"></div>
+  <div class="take">Receita de € 47 mil a € 2,2 milhões; equilíbrio operacional no Ano 5 (margem ≈ 12%).</div>
+  <div class="pfoot">Financeiro · trajetória</div><div class="pnum">08</div>
+</section>
+
+<!-- 9 CAIXA & CAPTAÇÃO -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Caixa &amp; captação (€ mil)</div>
+  <div class="title sm">Captação escalonada, risco controlado.</div>
+  <div class="split">
+    <div class="l chartbox" id="ch-cash"></div>
+    <div class="r ask"><div class="a1">Seed: € 450 mil agora</div>
+      <div class="a2">Cobre a validação dos Anos 1–2. Series A de € 500 mil financia a escala. Total de € 950 mil até o equilíbrio. O caixa mínimo é no fim do Ano 2 — por isso captamos antes.</div></div>
+  </div>
+  <div class="pfoot">Caixa &amp; captação</div><div class="pnum">09</div>
+</section>
+
+<!-- 10 UNIT ECONOMICS -->
+<section class="slide">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">Economia unitária &amp; retorno</div>
+  <div class="title sm">Economia saudável, retorno patrimonial.</div>
+  <div class="stats">
+    <div class="stat"><div class="num">~80%</div><div class="lbl">margem bruta</div></div>
+    <div class="stat"><div class="num">7–10×</div><div class="lbl">LTV sobre CAC (profissional / usuário)</div></div>
+    <div class="stat"><div class="num">€ 6,5–8,5 mi</div><div class="lbl">valor estimado da empresa ao fim do Ano 5</div></div>
+  </div>
+  <div class="take">Retorno via valor patrimonial, não dividendos iniciais.</div>
+  <div class="pfoot">Economia unitária &amp; retorno</div><div class="pnum">10</div>
+</section>
+
+<!-- 11 ASK / FECHAMENTO -->
+<section class="slide dark">
+  <div class="brandmk">Liora<span>.</span></div>
+  <div class="kicker">O pedido</div>
+  <div class="title sm">€ 450 mil para provar o modelo no primeiro hub.</div>
+  <div class="sub">Dor validada nos dois lados · receita diversificada · caminho financeiro disciplinado.<br><br><strong style="color:#fff">A Liora quer estruturar a mobilidade residencial internacional.</strong></div>
+  <div class="pfoot">Obrigado</div><div class="pnum">11</div>
+</section>
+
+</div>
+
+<div class="nav"><button id="prev">‹</button><button id="next">›</button></div>
+
+<script>
+function set(id,h){const n=document.getElementById(id);if(n)n.innerHTML=h;}
+const C={ink:'#2B2722',inkSoft:'#6B6357',inkFaint:'#9A9183',line:'#C9BFAE',lineSoft:'#DED6C6',
+  cream:'#F6F2EA',accent:'#5A6B57',accentDeep:'#495943',gold:'#9A7B45',terra:'#9A4B3A'};
+const SANS='font-family:Helvetica Neue,Arial,sans-serif';
+function fmt(n){return n.toLocaleString('de-DE');}
+
+/* barras horizontais */
+function hbar(id,items,opt={}){
+  const max=opt.max||Math.max(...items.map(d=>d.value));
+  const W=900,rowH=52,padL=330,padR=70,padT=6,padB=8,n=items.length,H=padT+padB+n*rowH,plotW=W-padL-padR;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="${SANS}">`;
+  items.forEach((d,i)=>{const y=padT+i*rowH+rowH/2,bw=d.value/max*plotW;
+    s+=`<text x="${padL-14}" y="${y+6}" text-anchor="end" font-size="18" fill="${C.ink}">${d.label}</text>`;
+    s+=`<rect x="${padL}" y="${y-15}" width="${bw}" height="30" rx="3" fill="${d.color||C.accent}"/>`;
+    s+=`<text x="${padL+bw+10}" y="${y+7}" font-size="21" font-weight="700" fill="${C.accentDeep}">${d.value}%</text>`;});
+  return s+'</svg>',set(id,s+'</svg>');
+}
+/* barras agrupadas com negativos */
+function grouped(id,cats,series,opt={}){
+  const W=900,H=420,padL=64,padR=16,padT=40,padB=40,n=cats.length,plotW=W-padL-padR,plotH=H-padT-padB;
+  const ymin=opt.ymin,ymax=opt.ymax,span=ymax-ymin,Y=v=>padT+plotH-(v-ymin)/span*plotH;
+  const gw=plotW/n,bw=gw*0.72/series.length;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="${SANS}">`;
+  for(let g=Math.ceil(ymin/500)*500;g<=ymax;g+=500){const y=Y(g);
+    s+=`<line x1="${padL}" y1="${y}" x2="${padL+plotW}" y2="${y}" stroke="${g===0?C.inkFaint:C.lineSoft}"/>`;
+    s+=`<text x="${padL-8}" y="${y+4}" text-anchor="end" font-size="13" fill="${C.inkFaint}">${fmt(g)}</text>`;}
+  cats.forEach((c,i)=>{const x0=padL+gw*i+gw*0.14;
+    series.forEach((se,k)=>{const v=se.values[i],x=x0+k*bw,yz=Y(0),yv=Y(v);
+      s+=`<rect x="${x}" y="${Math.min(yz,yv)}" width="${bw-3}" height="${Math.abs(yv-yz)}" fill="${se.color}"/>`;});
+    s+=`<text x="${padL+gw*(i+0.5)}" y="${padT+plotH+24}" text-anchor="middle" font-size="15" fill="${C.ink}">${c}</text>`;});
+  let lx=padL+4;series.forEach(se=>{s+=`<rect x="${lx}" y="8" width="15" height="15" fill="${se.color}"/><text x="${lx+20}" y="20" font-size="14" fill="${C.ink}">${se.name}</text>`;lx+=140;});
+  return set(id,s+'</svg>');
+}
+/* linha */
+function lineChart(id,cats,vals,opt={}){
+  const W=620,H=380,padL=58,padR=26,padT=26,padB=40,n=cats.length,plotW=W-padL-padR,plotH=H-padT-padB;
+  const ymin=0,ymax=opt.ymax,span=ymax-ymin,X=i=>padL+plotW/(n-1)*i,Y=v=>padT+plotH-(v-ymin)/span*plotH;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="${SANS}">`;
+  for(let g=0;g<=ymax;g+=opt.step||100){const y=Y(g);
+    s+=`<line x1="${padL}" y1="${y}" x2="${padL+plotW}" y2="${y}" stroke="${C.lineSoft}"/>`;
+    s+=`<text x="${padL-8}" y="${y+4}" text-anchor="end" font-size="13" fill="${C.inkFaint}">${fmt(g)}</text>`;}
+  let p='';vals.forEach((v,i)=>{p+=(i?'L':'M')+X(i)+' '+Y(v);});
+  s+=`<path d="${p}" fill="none" stroke="${C.accent}" stroke-width="3.5"/>`;
+  vals.forEach((v,i)=>{s+=`<circle cx="${X(i)}" cy="${Y(v)}" r="6" fill="${i===1?C.terra:C.accent}"/>`;
+    s+=`<text x="${X(i)}" y="${Y(v)-14}" text-anchor="middle" font-size="15" font-weight="700" fill="${i===1?C.terra:C.accentDeep}">${fmt(Math.round(v))}</text>`;
+    s+=`<text x="${X(i)}" y="${padT+plotH+24}" text-anchor="middle" font-size="14" fill="${C.ink}">${cats[i]}</text>`;});
+  return set(id,s+'</svg>');
+}
+
+hbar('ch-user',[
+  {label:'Difícil achar moradia confiável',value:71},
+  {label:'Repetiram as mesmas informações',value:70},
+  {label:'Difícil entender bairros',value:56},
+  {label:'Insatisfeitos com as opções atuais',value:49,color:C.terra}]);
+
+grouped('ch-fin',['Ano 1','Ano 2','Ano 3','Ano 4','Ano 5'],[
+  {name:'Receita',color:C.accent,values:[46.562,185.7,527.9,1136.5,2222.36]},
+  {name:'Custo',color:C.gold,values:[214,379,714,1212,1955]},
+  {name:'Resultado',color:C.terra,values:[-167.438,-193.3,-186.1,-75.5,267.36]}],
+  {ymin:-300,ymax:2400});
+
+lineChart('ch-cash',['A1','A2','A3','A4','A5'],[249.562,56.262,370.162,294.662,562.022],{ymax:600,step:100});
+
+/* navegação */
+const slides=[...document.querySelectorAll('.slide')];let idx=0;
+function show(i){idx=Math.max(0,Math.min(slides.length-1,i));slides.forEach((s,k)=>s.classList.toggle('active',k===idx));}
+document.getElementById('next').onclick=()=>show(idx+1);
+document.getElementById('prev').onclick=()=>show(idx-1);
+document.addEventListener('keydown',e=>{
+  if(e.key==='ArrowRight'||e.key===' '||e.key==='PageDown'){show(idx+1);e.preventDefault();}
+  if(e.key==='ArrowLeft'||e.key==='PageUp'){show(idx-1);e.preventDefault();}
+  if(e.key==='Home')show(0); if(e.key==='End')show(slides.length-1);
+});
+document.addEventListener('click',e=>{if(e.target.closest('.nav'))return;
+  const x=e.clientX/window.innerWidth; if(x>0.5)show(idx+1); else show(idx-1);});
+</script>
+</body>
+</html>

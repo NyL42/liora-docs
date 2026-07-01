@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questionário B — Profissionais parceiros · Liora</title>
+<style>
+:root{
+  --ink:#2B2722; --ink-soft:#6B6357; --ink-faint:#9A9183;
+  --line:#C9BFAE; --line-soft:#DED6C6;
+  --paper:#FFFFFF; --cream:#F6F2EA; --stone:#E9E3D7;
+  --accent:#5A6B57; --accent-deep:#495943; --accent-soft:#E5E9DF;
+  --gold:#9A7B45; --gold-soft:#EFE6D4;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+  --sans:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:var(--serif);color:var(--ink);background:var(--stone);font-size:11.2pt;line-height:1.5;margin:0;}
+.wrap{max-width:860px;margin:0 auto;background:var(--paper);padding:36px 54px 60px;}
+p{margin:0 0 .7em;text-align:justify;}
+em{color:var(--accent-deep);}
+.title-block{text-align:center;padding:42px 0 20px;border-bottom:1px solid var(--line);margin-bottom:6px;}
+.brand-rule{width:70px;height:3px;background:var(--accent);margin:0 auto 20px;}
+.doc-kicker{font-family:var(--sans);font-size:9.5pt;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:13px;}
+.doc-title{font-size:26pt;font-weight:700;margin:0 0 6px;letter-spacing:-.01em;}
+.doc-sub{font-size:12.5pt;color:var(--ink-soft);font-style:italic;margin-bottom:20px;}
+.doc-aff{font-size:10.5pt;color:var(--ink-soft);}
+.doc-conf{font-family:var(--sans);font-size:8.5pt;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-faint);margin-top:16px;}
+.intro-note{font-size:10.6pt;color:var(--ink-soft);max-width:640px;margin:14px auto 0;text-align:center;font-style:italic;}
+.qsection{margin-top:22px;}
+.meta{background:var(--cream);border:1px solid var(--line-soft);border-left:4px solid var(--accent);border-radius:5px;padding:11px 16px;margin:10px 0 18px;font-size:10pt;break-inside:avoid;}
+.meta b{color:var(--accent-deep);}
+.meta ul{margin:4px 0 0;padding-left:1.2em;}
+.meta li{margin:1px 0;}
+h3.block{font-size:11.5pt;color:var(--accent-deep);text-transform:uppercase;letter-spacing:.05em;margin:20px 0 8px;border-bottom:1px solid var(--line-soft);padding-bottom:3px;break-after:avoid;}
+.q{margin:0 0 12px;break-inside:avoid;}
+.qt{font-size:11pt;margin-bottom:5px;}
+.qn{font-weight:700;color:var(--accent-deep);margin-right:3px;}
+.qhint{font-family:var(--sans);font-size:8.8pt;color:var(--ink-faint);font-style:italic;}
+.opt{font-family:var(--sans);font-size:10pt;color:var(--ink);padding:1.5px 0 1.5px 4px;display:flex;align-items:flex-start;gap:8px;}
+.mk{flex:0 0 auto;width:12px;height:12px;border:1.4px solid var(--ink-soft);margin-top:2px;display:inline-block;}
+.mk.ci{border-radius:50%;}
+.mk.sq{border-radius:2px;}
+.scale{display:flex;gap:7px;margin:4px 0 3px;}
+.sbox{font-family:var(--sans);font-size:10pt;font-weight:600;color:var(--ink-soft);width:30px;height:28px;border:1.4px solid var(--line);border-radius:3px;display:flex;align-items:center;justify-content:center;background:var(--cream);}
+.anchors{display:flex;justify-content:space-between;font-family:var(--sans);font-size:8.8pt;color:var(--ink-faint);max-width:182px;}
+.open .lines{margin-top:7px;}
+.open .lines div{border-bottom:.6px solid var(--line);height:19px;}
+.cols{column-count:2;column-gap:30px;}
+.cols .opt{break-inside:avoid;}
+.print-foot{display:none;}
+@media print{
+  body{background:#fff;font-size:10.4pt;}
+  .wrap{max-width:none;margin:0;padding:0;}
+  .print-foot{display:block;position:fixed;bottom:6mm;left:0;right:0;text-align:center;font-family:var(--sans);font-size:7.5pt;letter-spacing:.08em;color:var(--ink-faint);}
+  .q,.meta{break-inside:avoid;}
+  h2,h3{break-after:avoid;}
+}
+@page{size:A4;margin:17mm 15mm 16mm;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="title-block">
+  <div class="brand-rule"></div>
+  <div class="doc-kicker">Análise de Mercado · Liora</div>
+  <div class="doc-title">Questionário B</div>
+  <div class="doc-sub">Profissionais parceiros — corretores, consultores, advogados, contadores e demais</div>
+  <div class="doc-aff">Liora · Gheller &amp; Co.</div>
+  <div class="doc-conf">Documento confidencial — distribuição restrita</div>
+  <p class="intro-note">Instrumento estruturado para aplicação. As perguntas diagnosticam a realidade atual do mercado, sem induzir o respondente a imaginar uma solução ideal.</p>
+</div>
+<div class="qsection" id="q"></div>
+</div>
+<div class="print-foot">Liora · Gheller &amp; Co. — Questionário B · Documento confidencial</div>
+<script>
+function set(id,h){const n=document.getElementById(id);if(n)n.innerHTML=h;}
+const Q={
+  objetivo:'Medir dores comerciais, qualidade atual dos contatos recebidos, informações que faltam antes do primeiro contato, tempo gasto em triagem e critérios de avaliação de canais de captação.',
+  formato:['Aplicação online.','15 perguntas quantitativas e 10 qualitativas.','Uso de seleção única, múltipla escolha e escala de 1 a 5.'],
+  quant:[
+    {q:'Qual melhor descreve sua atividade principal?',type:'single',opts:['Corretor ou agente imobiliário','Consultor de relocation','Advogado de imigração ou residência','Contador ou consultor fiscal','Consultor financeiro, bancário ou patrimonial','Gestor de propriedades ou outro profissional relacionado']},
+    {q:'Em qual mercado você atua principalmente?',type:'single',opts:['Amsterdã / Países Baixos','Berlim / Alemanha','Viena / Áustria','Copenhague / Dinamarca','Outro mercado europeu']},
+    {q:'Quais perfis de clientes internacionais você atende com mais frequência?',type:'multi',limit:'todos que se aplicam',opts:['Estudantes internacionais','Jovens profissionais','Empreendedores ou autônomos','Famílias em realocação','Compradores ou investidores internacionais','Clientes de alto patrimônio']},
+    {q:'Quantos contatos comerciais novos você recebe em média por mês?',type:'single',opts:['0 a 5','6 a 15','16 a 30','31 a 50','Mais de 50']},
+    {q:'Em uma escala de 1 a 5, como você avalia a qualidade média dos contatos comerciais que recebe atualmente?',type:'scale',anchors:['1 = muito baixa','5 = muito alta']},
+    {q:'Quais são os maiores problemas nos contatos comerciais recebidos atualmente?',type:'multi',limit:'até 4',opts:['Falta de orçamento claro','Falta de prazo definido','Cliente sem documentação ou elegibilidade','Cliente sem entendimento do mercado local','Baixa probabilidade de conversão','Dificuldade de comunicação/idioma','Expectativas desalinhadas de preço ou serviço','Excesso de tempo gasto em triagem']},
+    {q:'Quais informações mais ajudam, hoje, a responder um cliente no primeiro contato?',type:'multi',limit:'até 5',opts:['Orçamento','Cidade ou bairro de interesse','Prazo da mudança/transação','Objetivo do cliente','Nacionalidade/residência/documentação','Tipo de imóvel ou serviço buscado','Preferências e restrições pessoais','Nível de urgência','Idioma preferencial']},
+    {q:'Em uma escala de 1 a 5, com que frequência os contatos recebidos chegam com informações suficientes para uma primeira resposta objetiva?',type:'scale',anchors:['1 = quase nunca','5 = quase sempre']},
+    {q:'Quais canais geram hoje os contatos com maior chance de conversão?',type:'multi',limit:'até 3',opts:['Indicações pessoais','Portais imobiliários','Redes sociais','Website próprio ou SEO','Parcerias com universidades ou empresas','Agências de relocation','Plataformas profissionais ou marketplaces','Eventos, comunidades ou networking']},
+    {q:'Quais modelos comerciais você já utiliza ou encontra em canais de captação?',type:'multi',limit:'todos que se aplicam',opts:['Pagamento por anúncio/listagem','Pagamento por lead','Assinatura mensal','Comissão por conversão','Parceria sem pagamento direto','Marketing próprio sem intermediário','Não utilizo canais pagos']},
+    {q:'Em uma escala de 1 a 5, quão previsível é o retorno financeiro dos canais de captação que você usa hoje?',type:'scale',anchors:['1 = nada previsível','5 = muito previsível']},
+    {q:'Quais informações você costuma precisar pedir depois do primeiro contato porque não chegam inicialmente?',type:'multi',limit:'até 5',opts:['Orçamento','Prazo','Documentos ou elegibilidade','Objetivo do cliente','Cidade ou bairro de interesse','Tipo de imóvel ou serviço buscado','Idioma preferencial','Nível de urgência']},
+    {q:'Em uma escala de 1 a 5, quanto a triagem inicial de contatos pouco qualificados compromete sua rotina comercial?',type:'scale',anchors:['1 = não compromete','5 = compromete muito']},
+    {q:'Quais fatores fazem você desconfiar dos canais de captação que conhece ou já avaliou?',type:'multi',limit:'até 4',opts:['Falta de transparência sobre origem do contato','Contatos sem dados suficientes','Custo antes de comprovar qualidade','Baixa taxa de conversão','Falta de controle sobre status do atendimento','Promessas comerciais exageradas','Falta de reputação do canal']},
+    {q:'Em uma escala de 1 a 5, quão satisfeito você está com os canais atuais de captação de clientes internacionais?',type:'scale',anchors:['1 = muito insatisfeito','5 = muito satisfeito']}
+  ],
+  qual:[
+    'Como você recebe clientes internacionais atualmente?',
+    'Quais informações normalmente faltam antes do primeiro contato?',
+    'Nos contatos recebidos atualmente, o que diferencia um contato bom de um contato pouco aproveitável?',
+    'Que tipos de cliente internacional geram maior chance de conversão?',
+    'Quais riscos você enxerga nos canais de captação que usa hoje?',
+    'Que sinais fazem você confiar ou desconfiar dos canais de captação que conhece ou usa atualmente?',
+    'Que dados do cliente você costuma solicitar antes de uma primeira resposta comercial?',
+    'Quais canais atuais funcionam melhor e por quê?',
+    'Quais canais atuais funcionam pior e por quê?',
+    'O que, nos canais atuais, mais atrapalha a eficiência da sua triagem comercial?'
+  ]
+};
+function item(it,n){
+  let h=`<div class="q"><div class="qt"><span class="qn">${n}.</span>${it.q}`;
+  if(it.type==='multi') h+=` <span class="qhint">(selecione ${it.limit})</span>`;
+  h+=`</div>`;
+  if(it.type==='scale'){
+    h+=`<div class="scale">`;
+    for(let k=1;k<=5;k++) h+=`<span class="sbox">${k}</span>`;
+    h+=`</div><div class="anchors"><span>${it.anchors[0]}</span><span>${it.anchors[1]}</span></div>`;
+    if(it.extra) it.extra.forEach(o=>h+=`<div class="opt"><span class="mk sq"></span>${o}</div>`);
+  } else {
+    const mk=it.type==='single'?'ci':'sq';
+    h+=it.opts.length>5?'<div class="cols">':'<div>';
+    it.opts.forEach(o=>h+=`<div class="opt"><span class="mk ${mk}"></span>${o}</div>`);
+    h+=`</div>`;
+  }
+  return h+`</div>`;
+}
+let h=`<div class="meta"><b>Objetivo.</b> ${Q.objetivo}<ul>`;
+Q.formato.forEach(f=>h+=`<li>${f}</li>`); h+=`</ul></div>`;
+h+=`<h3 class="block">Perguntas quantitativas</h3>`;
+Q.quant.forEach((it,i)=>h+=item(it,i+1));
+h+=`<h3 class="block">Perguntas qualitativas</h3>`;
+Q.qual.forEach((q,i)=>h+=`<div class="q open"><div class="qt"><span class="qn">${i+1}.</span>${q}</div><div class="lines"><div></div><div></div></div></div>`);
+set('q',h);
+</script>
+</body>
+</html>

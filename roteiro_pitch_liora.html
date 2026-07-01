@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Roteiro do Pitch — Liora</title>
+<style>
+:root{
+  --ink:#2B2722; --ink-soft:#6B6357; --ink-faint:#9A9183;
+  --line:#C9BFAE; --line-soft:#DED6C6;
+  --paper:#FFFFFF; --cream:#F6F2EA; --stone:#E9E3D7;
+  --accent:#5A6B57; --accent-deep:#495943; --accent-soft:#E5E9DF;
+  --gold:#9A7B45; --gold-soft:#EFE6D4;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,serif;
+  --sans:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{font-family:var(--serif);color:var(--ink);background:var(--stone);font-size:11pt;line-height:1.5;margin:0;}
+.wrap{max-width:840px;margin:0 auto;background:var(--paper);padding:34px 52px 56px;}
+p{margin:0 0 .6em;}
+.title-block{text-align:center;padding:36px 0 18px;border-bottom:1px solid var(--line);margin-bottom:10px;}
+.brand-rule{width:66px;height:3px;background:var(--accent);margin:0 auto 18px;}
+.doc-kicker{font-family:var(--sans);font-size:9.5pt;letter-spacing:.22em;text-transform:uppercase;color:var(--gold);margin-bottom:12px;}
+.doc-title{font-size:25pt;font-weight:700;margin:0 0 5px;}
+.doc-sub{font-size:12pt;color:var(--ink-soft);font-style:italic;}
+h2{font-size:15pt;color:var(--ink);border-bottom:2px solid var(--accent);padding-bottom:4px;margin:26px 0 12px;}
+.howto{background:var(--gold-soft);border-left:3px solid var(--gold);border-radius:0 5px 5px 0;padding:10px 15px;margin:12px 0;font-size:10.2pt;}
+.howto b{color:var(--gold);}
+table.time{width:100%;border-collapse:collapse;font-family:var(--sans);font-size:9.6pt;margin:8px 0;}
+table.time th{background:var(--cream);border-top:1.4px solid var(--ink);border-bottom:1px solid var(--ink);padding:5px 8px;text-align:left;}
+table.time td{padding:3.5px 8px;border-bottom:.5px solid var(--line-soft);}
+table.time td.t{text-align:right;font-variant-numeric:tabular-nums;color:var(--accent-deep);font-weight:700;white-space:nowrap;}
+table.time tr.tot td{font-weight:700;background:var(--accent-soft);border-top:1px solid var(--accent);}
+
+.slideblk{break-inside:avoid;border:1px solid var(--line-soft);border-radius:8px;margin:11px 0;overflow:hidden;}
+.slideblk .sh{display:flex;justify-content:space-between;align-items:center;background:var(--cream);padding:7px 15px;border-left:4px solid var(--accent);}
+.slideblk .sh .st{font-weight:700;font-size:11.5pt;color:var(--accent-deep);}
+.slideblk .sh .stime{font-family:var(--sans);font-size:9.5pt;color:var(--gold);font-weight:700;}
+.slideblk .sb{padding:9px 16px;}
+.cue{font-family:var(--sans);font-size:9pt;color:var(--ink-faint);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;}
+.fala{font-size:11pt;line-height:1.55;}
+.fala::before{content:"“";color:var(--accent);font-size:1.3em;font-weight:700;}
+.fala::after{content:"”";color:var(--accent);font-size:1.3em;font-weight:700;}
+
+.qa{break-inside:avoid;margin:9px 0;}
+.qa .q{font-weight:700;color:var(--accent-deep);font-size:10.6pt;}
+.qa .a{font-size:10.4pt;color:var(--ink);margin-top:2px;}
+.qa .a::before{content:"→ ";color:var(--gold);font-weight:700;}
+.print-foot{display:none;}
+@media print{
+  body{background:#fff;font-size:10.4pt;}
+  .wrap{max-width:none;margin:0;padding:0;}
+  .slideblk,.qa,table.time,.howto{break-inside:avoid;}
+  h2{break-after:avoid;}
+  .print-foot{display:block;position:fixed;bottom:6mm;left:0;right:0;text-align:center;font-family:var(--sans);font-size:7.5pt;letter-spacing:.08em;color:var(--ink-faint);}
+}
+@page{size:A4;margin:16mm 15mm 15mm;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="title-block">
+  <div class="brand-rule"></div>
+  <div class="doc-kicker">Reunião de investidores · Liora</div>
+  <div class="doc-title">Roteiro do Pitch</div>
+  <div class="doc-sub">Apresentação do conceito — máximo de 5 minutos (sem contar perguntas)</div>
+</div>
+
+<div class="howto">
+<b>Como usar.</b> Cada bloco traz o tempo-alvo, o que está no slide e a fala sugerida. Fale em ritmo calmo (≈ 140 palavras/min), pause depois de cada número de validação e do pedido, olhe para a plateia nesses momentos e <b>não leia o slide</b> — ele é apoio, você é a narrativa. Tempo total planejado: <b>≈ 4 min 50 s</b>, deixando folga dentro dos 5 minutos.
+</div>
+
+<h2>Cronometragem</h2>
+<table class="time">
+<thead><tr><th>#</th><th>Slide</th><th class="t">Tempo</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Abertura</td><td class="t">0:15</td></tr>
+<tr><td>2</td><td>O problema</td><td class="t">0:30</td></tr>
+<tr><td>3</td><td>A solução</td><td class="t">0:30</td></tr>
+<tr><td>4</td><td>Validação — quem se muda</td><td class="t">0:40</td></tr>
+<tr><td>5</td><td>Validação — profissionais</td><td class="t">0:30</td></tr>
+<tr><td>6</td><td>Oportunidade</td><td class="t">0:20</td></tr>
+<tr><td>7</td><td>Modelo de receita</td><td class="t">0:25</td></tr>
+<tr><td>8</td><td>Trajetória financeira</td><td class="t">0:35</td></tr>
+<tr><td>9</td><td>Caixa &amp; captação</td><td class="t">0:25</td></tr>
+<tr><td>10</td><td>Economia &amp; retorno</td><td class="t">0:25</td></tr>
+<tr><td>11</td><td>Pedido &amp; fechamento</td><td class="t">0:15</td></tr>
+<tr class="tot"><td></td><td>Total</td><td class="t">≈ 4:50</td></tr>
+</tbody>
+</table>
+
+<h2>Falas por slide</h2>
+
+<div class="slideblk"><div class="sh"><span class="st">1 · Abertura</span><span class="stime">0:15</span></div>
+<div class="sb"><div class="cue">No slide: capa — Liora</div>
+<div class="fala">Boa tarde. Eu sou o Lucas, da Gheller &amp; Co. Nos próximos cinco minutos, quero mostrar por que a Liora resolve um problema caro e recorrente: mudar de país.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">2 · O problema</span><span class="stime">0:30</span></div>
+<div class="sb"><div class="cue">No slide: dois lados do problema</div>
+<div class="fala">Mudar de país é muito mais do que achar um imóvel. Hoje a jornada é fragmentada: cada país tem seus portais, em idiomas diferentes; a pessoa repete as mesmas informações para cada corretor; e os profissionais recebem contatos sem nenhum contexto. Do outro lado, quem tem imóvel para alugar ou vender não alcança essa demanda internacional. É lento, inseguro e caro para todos.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">3 · A solução</span><span class="stime">0:30</span></div>
+<div class="sb"><div class="cue">No slide: perfil único + três níveis</div>
+<div class="fala">A Liora organiza tudo em torno de um perfil único de mobilidade. A partir de uma conversa, a plataforma recomenda bairros, organiza a busca e conecta a pessoa ao profissional certo — com o contexto já pronto. E é personalizada: atende desde o estudante com pouco orçamento até quem investe centenas de milhares em advogados e consultores, em três níveis de serviço.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">4 · Validação — quem se muda</span><span class="stime">0:40</span></div>
+<div class="sb"><div class="cue">No slide: barras 71 / 70 / 56 / 49 (N = 75)</div>
+<div class="fala">E isso não é intuição — nós validamos. Numa amostra de 75 pessoas em mobilidade, 71% acham difícil encontrar moradia confiável em outro país; 70% tiveram que repetir as mesmas informações várias vezes; e quase metade está insatisfeita com as opções atuais. A dor é clara, frequente e mal atendida hoje.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">5 · Validação — profissionais</span><span class="stime">0:30</span></div>
+<div class="sb"><div class="cue">No slide: 56% · 60% · 68% (N = 25)</div>
+<div class="fala">Do lado profissional, o quadro se confirma: 56% dizem que os contatos chegam sem informação suficiente, e 60% perdem tempo relevante com triagem de contatos ruins. Ou seja, os dois lados do mercado sofrem com o mesmo problema — e ambos têm razão para pagar por uma solução.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">6 · Oportunidade</span><span class="stime">0:20</span></div>
+<div class="sb"><div class="cue">No slide: +55% · 26,5% · 16 mi</div>
+<div class="fala">O contexto joga a favor: na Europa, os preços de imóveis subiram cerca de 55% desde 2010, a pressão habitacional entre jovens é alta e o Erasmus já movimentou mais de 16 milhões de pessoas. A liberdade de circular existe; a facilidade de se estabelecer, não.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">7 · Modelo de receita</span><span class="stime">0:25</span></div>
+<div class="sb"><div class="cue">No slide: demanda | oferta &amp; dados</div>
+<div class="fala">A Liora monetiza os dois lados. Na demanda: taxa de ativação, mensalidade do plano assistido e atendimento premium. Na oferta e nos dados: comissão no redirecionamento a portais, listagens próprias e licenciamento de inteligência de demanda para incorporadoras e varejo. Várias fontes reforçando o mesmo ativo: o perfil de mobilidade.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">8 · Trajetória financeira</span><span class="stime">0:35</span></div>
+<div class="sb"><div class="cue">No slide: barras receita × custo × resultado</div>
+<div class="fala">No plano financeiro, começamos enxutos e investimos por quatro anos. A receita sai de 47 mil euros no primeiro ano para 2,2 milhões no quinto, quando cruzamos o equilíbrio operacional, com margem em torno de 12%. É uma rampa conservadora e defensável — não uma promessa otimista.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">9 · Caixa &amp; captação</span><span class="stime">0:25</span></div>
+<div class="sb"><div class="cue">No slide: curva de caixa + caixa do pedido</div>
+<div class="fala">Em caixa, o ponto mais baixo é o fim do segundo ano — por isso a captação é escalonada. Estamos buscando 450 mil euros de Seed agora, que cobrem a validação dos dois primeiros anos; uma Series A de 500 mil financia a escala. No total, 950 mil euros até o equilíbrio.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">10 · Economia &amp; retorno</span><span class="stime">0:25</span></div>
+<div class="sb"><div class="cue">No slide: ~80% · 7–10× · € 6,5–8,5 mi</div>
+<div class="fala">A economia unitária é saudável: margem bruta em torno de 80% e um retorno sobre o custo de aquisição entre 7 e 10 vezes. O retorno para o investidor vem de valor patrimonial — no cenário-base, a empresa vale entre 6,5 e 8,5 milhões de euros ao fim do quinto ano.</div></div></div>
+
+<div class="slideblk"><div class="sh"><span class="st">11 · Pedido &amp; fechamento</span><span class="stime">0:15</span></div>
+<div class="sb"><div class="cue">No slide: o pedido</div>
+<div class="fala">Resumindo: dor validada nos dois lados, receita diversificada e um caminho financeiro disciplinado. Com 450 mil euros, provamos o modelo no primeiro hub. A Liora quer estruturar a mobilidade residencial internacional. Obrigado — e fico à disposição para as perguntas.</div></div></div>
+
+<h2>Perguntas prováveis (preparação para o Q&amp;A)</h2>
+
+<div class="qa"><div class="q">Esses dados de validação vêm de pesquisa de campo?</div>
+<div class="a">São de uma amostra de validação de 100 respondentes, calibrada por fontes oficiais como o Eurostat. É validação inicial, não pesquisa em larga escala — e o primeiro objetivo do Seed é exatamente validar em campo no hub-piloto.</div></div>
+
+<div class="qa"><div class="q">Como vocês constroem a rede de profissionais e o inventário de imóveis?</div>
+<div class="a">Começamos por um hub (Amsterdã), com curadoria manual e parcerias locais. O gancho para o profissional entrar é receber contatos já qualificados; no início, o redirecionamento a portais parceiros cobre o inventário enquanto as listagens próprias crescem.</div></div>
+
+<div class="qa"><div class="q">O que impede um portal grande de copiar a ideia?</div>
+<div class="a">O ativo é o perfil único e a continuidade de dados entre países, somados a uma rede curada dos dois lados. Portais são centrados no imóvel e num só país. O efeito de rede e os dados proprietários aumentam com o uso e são difíceis de replicar de fora.</div></div>
+
+<div class="qa"><div class="q">Por que 450 mil e não uma rodada maior?</div>
+<div class="a">É o suficiente para validar um hub e provar a economia unitária em cerca de 24 meses. Captar mais cedo diluiria sem necessidade; a Series A entra depois, já com métricas comprovadas e em melhores condições.</div></div>
+
+<div class="qa"><div class="q">A rampa de receita não é otimista demais?</div>
+<div class="a">Ao contrário: o equilíbrio só ocorre no Ano 5, com margem de 12%, e os custos são realistas — salários acima do mínimo legal e marketing em torno de 20% da receita. No cenário conservador, ainda ficamos perto do equilíbrio.</div></div>
+
+<div class="qa"><div class="q">Licenciar dados não esbarra no GDPR?</div>
+<div class="a">Só licenciamos dados agregados e anonimizados — nunca dados individuais. E essa linha entra apenas a partir do Ano 3, quando há volume suficiente para gerar inteligência relevante com segurança.</div></div>
+
+<div class="qa"><div class="q">Qual é o maior risco?</div>
+<div class="a">É execução, não tecnologia: conversão e construção da rede no início. Mitigamos avançando hub a hub e só acelerando um mercado quando ele já tem rede mínima e experiência validada.</div></div>
+
+<div class="qa"><div class="q">E o Gheller Private?</div>
+<div class="a">Está fora do cenário-base — é potencial adicional. É um nível de relação curada, definido por adequação, não uma faixa de preço; clientes de alto valor já são bem atendidos no Personnalisé.</div></div>
+
+</div>
+<div class="print-foot">Liora · Gheller &amp; Co. — Roteiro do Pitch · Documento confidencial</div>
+</body>
+</html>

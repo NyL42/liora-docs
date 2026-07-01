@@ -1,0 +1,1014 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Liora — Plano de Negócios</title>
+<style>
+:root{
+  --ink:#2B2722; --ink-soft:#6B6357; --ink-faint:#9A9183;
+  --line:#C9BFAE; --line-soft:#DED6C6;
+  --paper:#FFFFFF; --cream:#F6F2EA; --stone:#E9E3D7;
+  --accent:#5A6B57; --accent-deep:#495943; --accent-soft:#E5E9DF; --accent-ink:#3C4A39;
+  --gold:#9A7B45; --gold-soft:#EFE6D4;
+  --terra:#9A4B3A; --terra-soft:#E7CFC8;
+  --serif:"Iowan Old Style","Palatino Linotype","Book Antiqua",Palatino,Georgia,"Times New Roman",serif;
+  --sans:"Helvetica Neue",Arial,"Segoe UI",sans-serif;
+}
+*{box-sizing:border-box;}
+html{-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+body{
+  font-family:var(--serif); color:var(--ink); background:var(--stone);
+  font-size:11.2pt; line-height:1.55; margin:0; padding:0;
+}
+.wrap{ max-width:880px; margin:0 auto; background:var(--paper); padding:36px 52px 60px; }
+p{ text-align:justify; margin:0 0 .7em; }
+strong{ color:var(--ink); }
+em{ color:var(--accent-deep); }
+h1,h2,h3,h4{ font-family:var(--serif); color:var(--ink); line-height:1.2; }
+.section > h2{
+  font-size:17pt; border-bottom:2px solid var(--accent); padding-bottom:5px;
+  margin:30px 0 14px; break-after:avoid;
+}
+h3{ font-size:12.6pt; color:var(--accent-deep); margin:20px 0 7px; break-after:avoid; }
+h4{ font-size:11pt; color:var(--ink-soft); margin:14px 0 5px; text-transform:uppercase; letter-spacing:.04em; }
+ul,ol{ margin:.2em 0 .8em; padding-left:1.3em; }
+li{ margin:.18em 0; text-align:justify; }
+a{ color:var(--accent-deep); }
+sup{ font-size:.7em; }
+
+/* ---- title block ---- */
+.title-block{ text-align:center; padding:46px 0 22px; border-bottom:1px solid var(--line); margin-bottom:8px; }
+.brand-rule{ width:70px; height:3px; background:var(--accent); margin:0 auto 22px; }
+.doc-kicker{ font-family:var(--sans); font-size:9.5pt; letter-spacing:.22em; text-transform:uppercase; color:var(--gold); margin-bottom:14px; }
+.doc-title{ font-size:30pt; font-weight:700; letter-spacing:-.01em; margin:0 0 6px; }
+.doc-sub{ font-size:13.5pt; color:var(--ink-soft); font-style:italic; margin-bottom:26px; }
+.doc-authors{ font-size:11.5pt; color:var(--ink); margin-bottom:3px; }
+.doc-aff{ font-size:10.5pt; color:var(--ink-soft); }
+.doc-date{ font-size:10.5pt; color:var(--ink-soft); margin-top:2px; }
+.doc-conf{ font-family:var(--sans); font-size:8.5pt; letter-spacing:.12em; text-transform:uppercase; color:var(--ink-faint); margin-top:18px; }
+
+/* ---- TOC ---- */
+.toc{ background:var(--cream); border:1px solid var(--line-soft); border-radius:6px; padding:16px 22px; margin:20px 0; font-size:10.4pt; }
+.toc h4{ margin:0 0 8px; color:var(--accent-deep); }
+.toc ol{ margin:0; padding-left:1.4em; columns:2; column-gap:36px; }
+.toc li{ margin:.12em 0; }
+
+/* ---- abstract / lead ---- */
+.lead{ font-size:11.6pt; }
+
+/* ---- tables ---- */
+table.tbl{ width:100%; border-collapse:collapse; margin:6px 0 6px; font-size:10pt; font-family:var(--sans); }
+table.tbl caption{ caption-side:top; text-align:left; font-family:var(--serif); font-style:italic; color:var(--ink-soft); font-size:10pt; margin-bottom:5px; }
+table.tbl thead th{ border-top:1.6px solid var(--ink); border-bottom:1px solid var(--ink); padding:6px 9px; text-align:left; font-weight:700; background:var(--cream); }
+table.tbl td{ padding:5px 9px; border-bottom:.5px solid var(--line-soft); vertical-align:top; }
+table.tbl tbody tr:last-child td{ border-bottom:1.6px solid var(--ink); }
+table.tbl .num{ text-align:right; font-variant-numeric:tabular-nums; white-space:nowrap; }
+table.tbl tr.total td{ font-weight:700; background:var(--accent-soft); border-top:1px solid var(--accent); }
+table.tbl tr.total td:first-child{ color:var(--accent-deep); }
+.pos{ color:var(--accent-deep); font-weight:700; }
+.neg{ color:var(--terra); font-weight:700; }
+.tbl-wrap{ break-inside:avoid; }
+
+/* ---- figures ---- */
+figure{ margin:14px 0 16px; break-inside:avoid; }
+figure .chart{ width:100%; }
+figcaption{ font-family:var(--serif); font-style:italic; font-size:9.6pt; color:var(--ink-soft); text-align:center; margin-top:6px; }
+figcaption b{ font-style:normal; color:var(--ink); }
+
+/* ---- KPI box ---- */
+.kpi{ break-inside:avoid; background:var(--cream); border:1px solid var(--line); border-left:4px solid var(--accent); border-radius:5px; padding:14px 20px; margin:14px 0; }
+.kpi h4{ margin:0 0 8px; color:var(--accent-deep); }
+.kpi table{ width:100%; border-collapse:collapse; font-family:var(--sans); font-size:10pt; }
+.kpi td{ padding:3px 0; border-bottom:.5px dotted var(--line); }
+.kpi td:last-child{ text-align:right; font-weight:700; color:var(--ink); white-space:nowrap; }
+.kpi tr:last-child td{ border-bottom:none; }
+
+/* ---- callout ---- */
+.note{ background:var(--gold-soft); border-left:3px solid var(--gold); border-radius:0 5px 5px 0; padding:9px 14px; margin:12px 0; font-size:10.2pt; break-inside:avoid; }
+
+/* ---- BMC ---- */
+.bmc{ break-inside:avoid; display:grid; grid-template-columns:repeat(5,1fr); grid-template-rows:auto auto; gap:5px; margin:10px 0 6px; font-family:var(--sans); }
+.bmc .b{ border:1px solid var(--line); border-radius:4px; padding:7px 9px; background:var(--cream); font-size:8.3pt; line-height:1.32; }
+.bmc .b .bt{ font-weight:700; color:var(--accent-deep); font-size:8.4pt; display:block; margin-bottom:3px; }
+.bmc .kp{ grid-row:1 / span 2; }
+.bmc .vp{ grid-row:1 / span 2; background:var(--accent-soft); }
+.bmc .cs{ grid-row:1 / span 2; }
+.bmc .cost{ grid-column:1 / span 3; }
+.bmc .rev{ grid-column:4 / span 2; background:var(--gold-soft); }
+
+/* ---- persona ---- */
+.persona{ break-inside:avoid; border:1px solid var(--line); border-radius:8px; overflow:hidden; margin:14px 0; background:var(--paper); }
+.persona .ph{ padding:9px 16px; color:#fff; }
+.persona .ph .pn{ font-size:12.5pt; font-weight:700; }
+.persona .ph .pr{ font-size:9.6pt; font-family:var(--sans); opacity:.92; }
+.persona .pbody{ display:grid; grid-template-columns:218px 1fr; gap:0; }
+.persona .pid{ padding:12px 16px; background:var(--cream); border-right:1px solid var(--line-soft); font-size:9.4pt; }
+.persona .pid .tags{ margin:6px 0 9px; }
+.persona .pid .tag{ display:inline-block; font-family:var(--sans); font-size:7.8pt; background:var(--paper); border:1px solid var(--line); border-radius:11px; padding:2px 8px; margin:2px 3px 2px 0; color:var(--ink-soft); }
+.persona .pid table{ width:100%; font-family:var(--sans); font-size:8.7pt; }
+.persona .pid td{ padding:1.5px 0; vertical-align:top; }
+.persona .pid td:first-child{ color:var(--ink-faint); width:42%; }
+.persona .pid td:last-child{ color:var(--ink); font-weight:600; }
+.persona .quote{ font-style:italic; color:var(--accent-deep); border-left:2px solid var(--accent); padding:4px 0 4px 9px; margin:8px 0 0; font-size:9.4pt; }
+.persona .pdetail{ padding:12px 16px; font-size:9.5pt; }
+.persona .pdetail p{ margin:0 0 7px; }
+.persona .pdetail b{ color:var(--accent-deep); }
+
+/* ---- empathy map ---- */
+.empathy{ break-inside:avoid; display:grid; grid-template-columns:1fr 1fr 1fr; gap:5px; margin:9px 0 4px; font-family:var(--sans); font-size:8.6pt; }
+.empathy .e{ border:1px solid var(--line); border-radius:5px; padding:8px 11px; line-height:1.35; }
+.empathy .e .eh{ font-weight:700; text-transform:uppercase; letter-spacing:.06em; font-size:7.8pt; display:block; margin-bottom:4px; }
+.empathy .think{ background:var(--accent-soft); } .empathy .think .eh{ color:var(--accent-ink); }
+.empathy .see{ background:var(--cream); } .empathy .see .eh{ color:var(--ink-soft); }
+.empathy .hear{ background:var(--cream); } .empathy .hear .eh{ color:var(--ink-soft); }
+.empathy .pain{ background:var(--terra-soft); grid-column:1 / span 1; } .empathy .pain .eh{ color:var(--terra); }
+.empathy .gain{ background:var(--accent-soft); grid-column:2 / span 2; } .empathy .gain .eh{ color:var(--accent-ink); }
+.em-label{ font-family:var(--sans); font-size:8.6pt; letter-spacing:.1em; text-transform:uppercase; color:var(--ink-faint); margin:10px 0 2px; }
+
+/* ---- references ---- */
+.refs{ font-size:9.6pt; }
+.refs ol{ padding-left:1.4em; }
+.refs li{ margin:.3em 0; }
+
+/* ---- print footer ---- */
+.print-foot{ display:none; }
+
+@media print{
+  body{ background:#fff; font-size:10.4pt; }
+  .wrap{ max-width:none; margin:0; padding:0; }
+  .no-print{ display:none; }
+  .print-foot{ display:block; position:fixed; bottom:6mm; left:0; right:0; text-align:center;
+    font-family:var(--sans); font-size:7.5pt; letter-spacing:.08em; color:var(--ink-faint); }
+  figure,table.tbl,.kpi,.bmc,.persona,.empathy,.note,.tbl-wrap{ break-inside:avoid; }
+  h2,h3,h4{ break-after:avoid; }
+  .toc{ break-inside:avoid; }
+}
+@page{ size:A4; margin:17mm 15mm 16mm; }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<!-- ===================== TÍTULO ===================== -->
+<div class="title-block">
+  <div class="brand-rule"></div>
+  <div class="doc-kicker">Plataforma de mobilidade residencial internacional</div>
+  <div class="doc-title">Liora</div>
+  <div class="doc-sub">Plano de Negócios — Projeção financeira de cinco anos</div>
+  <div class="doc-authors">Lucas de Castro Alves &nbsp;·&nbsp; Pedro &nbsp;·&nbsp; Julia &nbsp;·&nbsp; Juliane &nbsp;·&nbsp; Murilo</div>
+  <div class="doc-aff">Gheller &amp; Co.</div>
+  <div class="doc-date">Junho de 2026</div>
+  <div class="doc-conf">Documento confidencial — distribuição restrita</div>
+</div>
+
+<div class="toc">
+  <h4>Sumário</h4>
+  <ol>
+    <li>Sumário Executivo</li>
+    <li>Análise de Mercado</li>
+    <li>Plano de Marketing</li>
+    <li>Plano Operacional</li>
+    <li>Plano de Recursos Humanos</li>
+    <li>Plano Financeiro</li>
+    <li>Conclusões</li>
+  </ol>
+</div>
+
+<!-- ===================== 1. SUMÁRIO EXECUTIVO ===================== -->
+<div class="section">
+<h2>1. Sumário Executivo</h2>
+
+<p class="lead">A <strong>Gheller &amp; Co.</strong> apresenta a <strong>Liora</strong>, uma plataforma digital <em>proptech</em> voltada à mobilidade residencial internacional. A Liora organiza uma jornada hoje fragmentada em torno de um <strong>perfil único de mobilidade</strong>: a partir de uma conversa inicial, a plataforma recomenda bairros, organiza a busca por moradia, responde a dúvidas por assistentes digitais e conecta a pessoa a profissionais locais qualificados. O foco inicial é a Europa, onde a liberdade de circulação convive com barreiras práticas de moradia, idioma, documentação e confiança.</p>
+
+<p><strong>Missão.</strong> Tornar a mudança residencial internacional mais clara, segura e organizada, conectando quem se muda a moradias, bairros e profissionais compatíveis com seu contexto real.</p>
+
+<p><strong>Problema.</strong> A jornada de mudança internacional é fragmentada entre portais imobiliários, indicações informais, profissionais desconhecidos e serviços de <em>relocation</em> caros. Quem se muda repete as mesmas informações a cada contato; o profissional recebe contatos sem contexto e gasta tempo em triagem; e quem oferta um imóvel raramente alcança a demanda internacional qualificada que existe do outro lado.</p>
+
+<p><strong>Produtos e princípio de personalização.</strong> O cerne da Liora é adaptar a jornada ao contexto e ao orçamento de cada pessoa — do estudante com pouca verba a clientes que investem centenas de milhares em advogados, contadores e consultores. Essa personalização se materializa em níveis de serviço: <strong>Liora</strong> (experiência digital base), <strong>Liora Personnalisé</strong> (acompanhamento assistido, por mensalidade, que cobre amplo espectro de valor) e <strong>Gheller Private</strong> (um nível distinto de cliente e de relação, por curadoria e adequação). A monetização cobre os dois lados do mercado — demanda e oferta.</p>
+
+<p><strong>Visão de futuro.</strong> Construir uma infraestrutura europeia de perfis de mobilidade, validada hub a hub (Amsterdã, Berlim, Viena e Copenhague), e expandir para novos mercados conforme demanda, rede de parceiros e capacidade operacional.</p>
+
+<p><strong>Por que pode ter sucesso.</strong> A oportunidade nasce da diferença entre <em>mobilidade formal</em> e <em>mobilidade prática</em>: o direito de circular não elimina a dificuldade de se estabelecer. A Liora reúne em um só produto elementos hoje dispersos — continuidade de dados, contexto de bairro, orientação <em>cross-border</em>, Q&amp;A e rede profissional qualificada — com uma operação enxuta que mantém o risco financeiro sob controle.</p>
+
+<div class="kpi">
+<h4>Indicadores-chave do plano (cenário-base, 5 anos)</h4>
+<table>
+<tr><td>Receita Ano 1</td><td>€ 46.562</td></tr>
+<tr><td>Receita Ano 5</td><td>€ 2.222.360</td></tr>
+<tr><td>Primeiro ano operacional positivo</td><td>Ano 5 (€ +267.360 · margem ≈ 12%)</td></tr>
+<tr><td>Captação imediata (Seed)</td><td>€ 450.000</td></tr>
+<tr><td>Capital total até o equilíbrio</td><td>€ 950.000 (Seed + Series A)</td></tr>
+<tr><td>Margem bruta</td><td>≈ 80%</td></tr>
+<tr><td>LTV/CAC (profissional / usuário)</td><td>≈ 7× / ≈ 10×</td></tr>
+</table>
+</div>
+</div>
+
+<!-- ===================== 2. ANÁLISE DE MERCADO ===================== -->
+<div class="section">
+<h2>2. Análise de Mercado</h2>
+
+<h3>2.1 Mercado-alvo e oportunidade</h3>
+<p>A Liora atua no mercado de mobilidade residencial internacional, com foco inicial em hubs europeus de alta circulação acadêmica, profissional e empreendedora. A oportunidade nasce da diferença entre <em>mobilidade formal</em> e <em>mobilidade prática</em>: na União Europeia, cidadãos podem viver, trabalhar e estudar em outro país, mas a mudança segue dificultada por moradia confiável, bairros, idioma, contratos, registro, custos e acesso a profissionais.</p>
+
+<p>O contexto habitacional reforça a dor. Entre 2010 e o quarto trimestre de 2024, os preços de imóveis na União Europeia subiram cerca de <strong>55%</strong> e os aluguéis cerca de <strong>25%</strong>; em 2024, as famílias destinavam, em média, <strong>19%</strong> da renda disponível a moradia. Entre os jovens de 15 a 29 anos a pressão é maior: a saída da casa dos pais ocorre, em média, aos <strong>26,2 anos</strong>, <strong>26,5%</strong> viviam em moradias superlotadas e <strong>9,7%</strong> em lares que comprometem 40% ou mais da renda com habitação. A escala da circulação é ilustrada pelo Erasmus+, com mais de <strong>16 milhões</strong> de participantes desde 1987 [1][2][3].</p>
+
+<p>Esses dados não restringem a Liora a jovens ou estudantes: explicam por que a dor é mais visível nesse público. A plataforma atende qualquer pessoa cuja mudança residencial envolva complexidade internacional — e, do lado da oferta, proprietários, profissionais e empresas que querem alcançar essa demanda.</p>
+
+<h3>2.2 Hubs iniciais de validação</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 1. Hubs-piloto e seu papel na validação.</caption>
+<thead><tr><th>Hub</th><th>Racional e papel no piloto</th></tr></thead>
+<tbody>
+<tr><td>Amsterdã</td><td>Mercado internacional e competitivo; valida busca por moradia, recomendação de bairros e conexão com corretores.</td></tr>
+<tr><td>Berlim</td><td>Atração de profissionais, empreendedores e estudantes; testa diversidade de perfis e suporte documental.</td></tr>
+<tr><td>Viena</td><td>Qualidade de vida e estabilidade; testa decisão informada de bairro e instalação.</td></tr>
+<tr><td>Copenhague</td><td>Alto custo de vida e mercado exigente para estrangeiros; testa o valor da orientação e da comparação de custos.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>2.3 Modelo de negócio (Business Model Canvas)</h3>
+<p>O quadro a seguir resume o modelo. Os blocos de receita e de segmentos — incluindo o lado da oferta — são detalhados nas seções de Marketing e Financeiro.</p>
+<div class="bmc">
+  <div class="b kp"><span class="bt">Parcerias-chave</span>Portais imobiliários (redirecionamento); imobiliárias e corretores; advogados, contadores e consultores; agências de relocation; universidades e empregadores; provedores de dados; incorporadoras e varejo (dados).</div>
+  <div class="b ka"><span class="bt">Atividades-chave</span>Perfil de mobilidade; recomendação de bairros; curadoria de profissionais e de listagens; distribuição de contatos; produto de dados e análise.</div>
+  <div class="b vp"><span class="bt">Proposta de valor</span><b>Demanda:</b> menos fricção via perfil único, bairros e conexão confiável. <b>Profissionais:</b> contatos com contexto, menos triagem. <b>Oferta:</b> alcance à demanda internacional qualificada. <b>Empresas:</b> inteligência de demanda agregada.</div>
+  <div class="b cr"><span class="bt">Relacionamento</span>Autoatendimento assistido (Liora); acompanhamento (Personnalisé); relação privada e curada (Gheller Private); suporte por chat e Q&amp;A.</div>
+  <div class="b cs"><span class="bt">Segmentos de clientes</span>Usuários em mobilidade (estudantes, profissionais, empreendedores); compradores e investidores; clientes de alto patrimônio; vendedores e proprietários; profissionais parceiros; incorporadoras, varejo e <em>landlords</em> comerciais.</div>
+  <div class="b kr"><span class="bt">Recursos-chave</span>Plataforma; base de perfis; motor de recomendação; dados de bairro e demanda; rede de profissionais e de imóveis; marca.</div>
+  <div class="b ch"><span class="bt">Canais</span>Plataforma web/app; portais parceiros; conteúdo e SEO; universidades, empregadores e comunidades; indicação.</div>
+  <div class="b cost"><span class="bt">Estrutura de custos</span>Pessoas (maior rubrica); tecnologia e nuvem; aquisição e marketing; dados, conteúdo e curadoria; jurídico e compliance; operação por hub.</div>
+  <div class="b rev"><span class="bt">Fontes de receita</span>Taxa de compromisso e mensalidade (usuários); planos, contatos e comissões (profissionais); comissão e participação no redirecionamento a portais; listagens in-house; licenciamento de dados; Gheller Private.</div>
+</div>
+<figcaption><b>Figura 1.</b> Business Model Canvas resumido da Liora.</figcaption>
+
+<h3>2.4 Perfil dos consumidores</h3>
+<p>A pesquisa de validação confirmou dores consistentes nos diferentes lados do mercado. Entre quem busca moradia, a dificuldade se concentra em encontrar imóvel confiável e em entender bairros e regras locais (Figura 2). Entre os profissionais, predominam contatos sem contexto e o tempo perdido em triagem (Figura 3).</p>
+
+<figure><div class="chart" id="ch-dific"></div>
+<figcaption><b>Figura 2.</b> Principais dificuldades relatadas por quem busca moradia em outro país (% dos usuários; N = 75).</figcaption></figure>
+
+<figure><div class="chart" id="ch-likert"></div>
+<figcaption><b>Figura 3.</b> Distribuição de respostas (escala 1–5) em indicadores-chave de usuários e profissionais.</figcaption></figure>
+
+<figure><div class="chart" id="ch-prof"></div>
+<figcaption><b>Figura 4.</b> Principais problemas comerciais relatados pelos profissionais (% dos profissionais; N = 25).</figcaption></figure>
+
+<figure><div class="chart" id="ch-motivo"></div>
+<figcaption><b>Figura 5.</b> Motivo principal da mudança ou transação residencial (usuários).</figcaption></figure>
+
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 2. Segmentos, necessidade central e nível de serviço associado.</caption>
+<thead><tr><th>Segmento</th><th>Necessidade principal</th><th>Nível de serviço</th></tr></thead>
+<tbody>
+<tr><td>Usuário digital em mobilidade</td><td>Organizar informações, entender bairros, acessar Q&amp;A e obter uma primeira conexão confiável.</td><td>Liora</td></tr>
+<tr><td>Usuário assistido</td><td>Reduzir risco, economizar tempo e acessar profissionais especializados.</td><td>Liora Personnalisé</td></tr>
+<tr><td>Cliente privado</td><td>Relação curada e discreta para demandas complexas.</td><td>Gheller Private</td></tr>
+<tr><td>Profissional parceiro</td><td>Reduzir triagem e receber contatos com informação suficiente.</td><td>Plano parceiro / comissões</td></tr>
+<tr><td>Vendedor / proprietário</td><td>Alcançar demanda internacional qualificada para vender ou alugar.</td><td>Listagem / redirecionamento</td></tr>
+<tr><td>Incorporadora / varejo</td><td>Entender demanda por região antes de investir.</td><td>Licenciamento de dados</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>2.5 Personas</h3>
+
+<div class="persona">
+  <div class="ph" style="background:var(--accent)"><div class="pn">Sofia Andrade</div><div class="pr">Estudante internacional · Brasil → Amsterdã · lado da demanda</div></div>
+  <div class="pbody">
+    <div class="pid">
+      <div class="tags"><span class="tag">Curiosa</span><span class="tag">Ansiosa com o novo</span><span class="tag">Pesquisadora</span></div>
+      <table>
+        <tr><td>Idade</td><td>24 anos</td></tr>
+        <tr><td>Situação</td><td>Solteira, sem filhos</td></tr>
+        <tr><td>Renda</td><td>Bolsa ≈ € 900/mês</td></tr>
+        <tr><td>Formação</td><td>Arquitetura</td></tr>
+        <tr><td>Idiomas</td><td>PT, EN, ES básico</td></tr>
+      </table>
+      <p class="quote">"Cada site está em outro idioma, com outra lógica. Quero entender o bairro antes de escolher o apartamento."</p>
+    </div>
+    <div class="pdetail">
+      <p><b>Comportamentos.</b> Pesquisa em fóruns de expats e grupos; monta planilhas comparando bairros e custos; procrastina a decisão por excesso de informação fragmentada.</p>
+      <p><b>Necessidades.</b> Encontrar um bairro compatível com seu estilo de vida antes de filtrar imóveis; um perfil persistente que não precise reexplicar; falar com profissionais que já conhecem sua situação.</p>
+      <p><b>Frustrações.</b> Cada portal cobre só um país; sem contexto, qualquer bairro parece igual numa foto; corretores que não respondem antes de matrícula confirmada.</p>
+    </div>
+  </div>
+</div>
+<div class="em-label">Mapa de empatia — Sofia</div>
+<div class="empathy">
+  <div class="e think"><span class="eh">Pensa e sente</span>Animada, mas com medo de errar na escolha; sente que o mercado não foi feito para quem vem de fora.</div>
+  <div class="e see"><span class="eh">Vê</span>Portais em idioma que não domina; fotos sem contexto de bairro; anúncios que exigem renda local.</div>
+  <div class="e hear"><span class="eh">Escuta</span>"Cuidado com golpes de aluguel"; "comece a buscar com meses de antecedência"; relatos de colegas.</div>
+  <div class="e pain"><span class="eh">Dores</span>Recomeça do zero em cada cidade; sem histórico local, é ignorada ou exigem fiador; sem como avaliar um bairro à distância.</div>
+  <div class="e gain"><span class="eh">Ganhos</span>Perfil único que persiste entre cidades e plataformas; bairros ranqueados por compatibilidade; filtro do que o passaporte acessa; profissionais que já recebem seu briefing.</div>
+</div>
+
+<div class="persona">
+  <div class="ph" style="background:var(--gold)"><div class="pn">Marta Visser</div><div class="pr">Corretora autônoma · Amsterdã · lado profissional</div></div>
+  <div class="pbody">
+    <div class="pid">
+      <div class="tags"><span class="tag">Pragmática</span><span class="tag">Orientada a resultado</span><span class="tag">Cética com tech</span></div>
+      <table>
+        <tr><td>Idade</td><td>38 anos</td></tr>
+        <tr><td>Modelo</td><td>Autônoma</td></tr>
+        <tr><td>Remuneração</td><td>100% comissão</td></tr>
+        <tr><td>Experiência</td><td>10+ anos</td></tr>
+        <tr><td>Mercado</td><td>Países Baixos</td></tr>
+      </table>
+      <p class="quote">"Passo horas num contato que some. Preciso saber se a pessoa é séria antes de marcar visita."</p>
+    </div>
+    <div class="pdetail">
+      <p><b>Comportamentos.</b> Atende por mensagem o dia todo; faz triagem informal por intuição; depende de portais para captar contatos.</p>
+      <p><b>Necessidades.</b> Receber contatos pré-qualificados, com orçamento, prazo e intenção; reduzir visitas improdutivas; um painel simples para acompanhar negociações.</p>
+      <p><b>Frustrações.</b> Contatos que "só estão vendo" e somem; portais que cobram sem garantir qualidade; tempo investido no cliente errado.</p>
+    </div>
+  </div>
+</div>
+<div class="em-label">Mapa de empatia — Marta</div>
+<div class="empathy">
+  <div class="e think"><span class="eh">Pensa e sente</span>Pressão constante para fechar; teme ser substituída por plataformas que eliminam o corretor; seu diferencial é o relacionamento.</div>
+  <div class="e see"><span class="eh">Vê</span>Anúncios idênticos competindo nos mesmos portais; clientes fechando com outro corretor após seu esforço.</div>
+  <div class="e hear"><span class="eh">Escuta</span>Colegas falando em contatos comprados que "nunca fecham"; o mercado fala em proptech, mas muitos ignoram.</div>
+  <div class="e pain"><span class="eh">Dores</span>Tempo perdido em visitas sem intenção; sem visibilidade da jornada do contato; contatos sem contexto.</div>
+  <div class="e gain"><span class="eh">Ganhos</span>Contatos já perfilados (estilo de vida, orçamento, prazo); briefing antes da primeira conversa; painel de quem está pronto para fechar; ser conectada ao cliente certo, não ao próximo da fila.</div>
+</div>
+
+<div class="persona">
+  <div class="ph" style="background:var(--accent-deep)"><div class="pn">Henrik Lund</div><div class="pr">Proprietário em mudança · Copenhague · lado da oferta</div></div>
+  <div class="pbody">
+    <div class="pid">
+      <div class="tags"><span class="tag">Ocupado</span><span class="tag">Orientado a tempo</span><span class="tag">Avesso a risco</span></div>
+      <table>
+        <tr><td>Idade</td><td>45 anos</td></tr>
+        <tr><td>Situação</td><td>Realocando por trabalho</td></tr>
+        <tr><td>Ativo</td><td>Apartamento próprio</td></tr>
+        <tr><td>Objetivo</td><td>Alugar/vender rápido</td></tr>
+        <tr><td>Mercado</td><td>Dinamarca</td></tr>
+      </table>
+      <p class="quote">"Preciso alugar rápido e para a pessoa certa, sem virar um trabalho em tempo integral."</p>
+    </div>
+    <div class="pdetail">
+      <p><b>Comportamentos.</b> Anuncia em um portal local e espera; filtra mensagens genéricas manualmente; recorre a um corretor quando o tempo aperta.</p>
+      <p><b>Necessidades.</b> Alcançar demanda internacional qualificada; reduzir contatos vazios; uma listagem com bom alcance e curadoria mínima.</p>
+      <p><b>Frustrações.</b> Muitos contatos sem perfil; portais sem alcance internacional; comissões altas sem clareza do que é entregue.</p>
+    </div>
+  </div>
+</div>
+<div class="em-label">Mapa de empatia — Henrik</div>
+<div class="empathy">
+  <div class="e think"><span class="eh">Pensa e sente</span>Quer resolver com segurança e sem expor o imóvel a qualquer um; receia perder tempo com curiosos.</div>
+  <div class="e see"><span class="eh">Vê</span>Caixa de entrada cheia de mensagens genéricas; anúncios concorrentes parados há semanas.</div>
+  <div class="e hear"><span class="eh">Escuta</span>Colegas que alugaram para inquilino errado; corretores prometendo rapidez por comissão alta.</div>
+  <div class="e pain"><span class="eh">Dores</span>Triagem manual de contatos vazios; portais sem alcance internacional; falta de clareza sobre o que a comissão cobre.</div>
+  <div class="e gain"><span class="eh">Ganhos</span>Listagem exposta a uma demanda já qualificada; candidatos com perfil e intenção visíveis; curadoria que reduz contatos improdutivos.</div>
+</div>
+
+<h3>2.6 Análise de concorrentes</h3>
+<p>A comparação usa a Matriz de Perfil Competitivo: fatores críticos de sucesso recebem pesos que somam 1,00; cada concorrente recebe nota de 1 a 4; o resultado ponderado indica a força relativa. A nota da Liora reflete seu posicionamento planejado e mantém-se conservadora nos fatores que dependem de operação consolidada (inventário, marca e cobertura).</p>
+
+<figure><div class="chart" id="ch-heat"></div>
+<figcaption><b>Figura 6.</b> Matriz de Perfil Competitivo — notas por fator (1 = fraqueza, 4 = força). Pontuação total ponderada na última linha.</figcaption></figure>
+
+<figure><div class="chart" id="ch-radar"></div>
+<figcaption><b>Figura 7.</b> Perfil competitivo da Liora frente a dois concorrentes de referência, por fator crítico.</figcaption></figure>
+
+<p>A Liora aparece em posição intermediária (2,48): abaixo de concorrentes com inventário e marca consolidados, acima de quem resolve apenas parte da jornada. A oportunidade está em combinar o que hoje vem separado — continuidade de dados, contexto de bairro, orientação <em>cross-border</em>, Q&amp;A e rede profissional qualificada.</p>
+
+<h3>2.7 Lacunas de mercado</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 3. Lacunas do mercado atual e a resposta da Liora.</caption>
+<thead><tr><th>Lacuna</th><th>Oportunidade para a Liora</th></tr></thead>
+<tbody>
+<tr><td>Falta de continuidade de dados</td><td>Um perfil que acompanha o usuário entre destinos e profissionais.</td></tr>
+<tr><td>Busca centrada no imóvel</td><td>Começar pelo estilo de vida, bairro e contexto da mudança.</td></tr>
+<tr><td>Serviços profissionais separados da busca</td><td>Integrar corretores, advogados, contadores e consultores conforme a necessidade.</td></tr>
+<tr><td>Contatos comerciais sem contexto</td><td>Organizar orçamento, prazo, documentos e objetivo antes do encaminhamento.</td></tr>
+<tr><td>Oferta sem alcance internacional</td><td>Conectar vendedores e proprietários à demanda internacional qualificada.</td></tr>
+<tr><td>Decisão de investimento sem dados de demanda</td><td>Licenciar inteligência agregada a incorporadoras e ao varejo.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- ===================== 3. PLANO DE MARKETING ===================== -->
+<div class="section">
+<h2>3. Plano de Marketing</h2>
+
+<h3>3.1 Posicionamento</h3>
+<p>A Liora é posicionada como <strong>plataforma de mobilidade residencial internacional</strong>, não como portal de imóveis. O posicionamento apoia-se em quatro pilares: <em>contexto antes do imóvel</em>; <em>confiança em mercados desconhecidos</em>; <em>continuidade da jornada</em> via perfil único; e <em>personalização por complexidade</em>. A comunicação é informativa e profissional — a categoria envolve confiança e decisões de alto impacto.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 4. Mensagem central por público.</caption>
+<thead><tr><th>Público</th><th>Mensagem central</th></tr></thead>
+<tbody>
+<tr><td>Usuários digitais</td><td>Organize seu perfil, entenda bairros e avance com mais segurança.</td></tr>
+<tr><td>Usuários assistidos</td><td>Acompanhamento para reduzir risco em uma mudança internacional.</td></tr>
+<tr><td>Clientes privados</td><td>Atendimento residencial seletivo, discreto e coordenado pela Gheller &amp; Co.</td></tr>
+<tr><td>Profissionais parceiros</td><td>Receba contatos com mais contexto e reduza o tempo de triagem.</td></tr>
+<tr><td>Vendedores e proprietários</td><td>Alcance uma demanda internacional qualificada para seu imóvel.</td></tr>
+<tr><td>Incorporadoras e varejo</td><td>Decida onde investir com base em demanda real por região.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>3.2 Preço</h3>
+<p>A estratégia de preço reflete a personalização por complexidade e os dois lados do mercado. Os valores são premissas de trabalho, detalhadas no Plano Financeiro.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 5. Arquitetura de preços por linha de receita.</caption>
+<thead><tr><th>Linha</th><th>Papel</th><th class="num">Modelo</th></tr></thead>
+<tbody>
+<tr><td>Liora (base)</td><td>Entrada e validação do perfil.</td><td class="num">Taxa de compromisso € 29</td></tr>
+<tr><td>Liora Personnalisé</td><td>Acompanhamento assistido (amplo espectro).</td><td class="num">Mensalidade € 149</td></tr>
+<tr><td>Gheller Private</td><td>Nível distinto de cliente e relação curada.</td><td class="num">Por curadoria</td></tr>
+<tr><td>Profissionais</td><td>Recebimento de contatos.</td><td class="num">€ 249/mês ou € 45 avulso + comissão</td></tr>
+<tr><td>Redirecionamento a portais</td><td>Encaminhamento qualificado.</td><td class="num">Comissão ≈ € 50/conversão</td></tr>
+<tr><td>Listagem in-house</td><td>Exposição da oferta.</td><td class="num">≈ € 120/listagem</td></tr>
+<tr><td>Licenciamento de dados</td><td>Inteligência de demanda agregada.</td><td class="num">Contrato B2B (ramp tardio)</td></tr>
+</tbody>
+</table>
+</div>
+<div class="note"><strong>Gheller Private.</strong> Não é definido por um valor de entrada, e sim por adequação e relacionamento — um nível distinto de cliente, por convite e curadoria. Clientes de alto valor podem ser plenamente atendidos no Personnalisé; o Private permanece <em>fora do cenário-base</em>, como potencial adicional.</div>
+
+<h3>3.3 Distribuição</h3>
+<p>A distribuição combina canais digitais, parcerias e implantação progressiva por hubs. Cada hub funciona como núcleo de validação: antes de ampliar campanhas, a Liora garante uma rede mínima de profissionais e de imóveis capaz de atender os perfis de demanda da cidade. Os principais canais são a plataforma web/app, os portais imobiliários parceiros (redirecionamento), parcerias com universidades, comunidades e empregadores, conteúdo/SEO e indicações.</p>
+
+<h3>3.4 Promoção</h3>
+<p>A promoção educa o mercado sobre uma categoria ainda em consolidação e combina conteúdo educativo, construção de confiança e campanhas segmentadas por cidade.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 6. Canais de promoção e uso estratégico.</caption>
+<thead><tr><th>Canal</th><th>Uso estratégico</th></tr></thead>
+<tbody>
+<tr><td>SEO e blog</td><td>Guias de bairros, custos, contratos, registro e adaptação local.</td></tr>
+<tr><td>Instagram / TikTok</td><td>Conteúdo visual para estudantes, jovens profissionais e pessoas em mudança.</td></tr>
+<tr><td>LinkedIn</td><td>Conteúdo institucional, captação B2B (profissionais, imobiliárias, incorporadoras) e clientes maduros.</td></tr>
+<tr><td>YouTube</td><td>Guias de cidade e orientações sobre mudança internacional.</td></tr>
+<tr><td>E-mail</td><td>Nutrição de cadastros e acompanhamento da jornada.</td></tr>
+<tr><td>Parcerias e eventos</td><td>Confiança local e aquisição em hubs específicos.</td></tr>
+<tr><td>Programa de indicação</td><td>Crescimento por recomendação e redução do custo de aquisição.</td></tr>
+</tbody>
+</table>
+</div>
+</div>
+
+<!-- ===================== 4. PLANO OPERACIONAL ===================== -->
+<div class="section">
+<h2>4. Plano Operacional</h2>
+
+<h3>4.1 Localização, estrutura física e layout</h3>
+<p>A Liora opera de forma <strong>remota e digital</strong>, com sede jurídica nos Países Baixos e presença distribuída pelos hubs (Amsterdã, Berlim, Viena e Copenhague). Não há escritório próprio na fase inicial: a equipe atua em <em>home office</em>, com uso de coworking sob demanda nos hubs prioritários e bases flexíveis conforme a operação amadurece. O "layout" da operação é o ambiente digital — plataforma web/app, ferramentas de colaboração, atendimento e gestão remota de parceiros.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 7. Fases de evolução operacional.</caption>
+<thead><tr><th>Fase</th><th>Característica operacional</th></tr></thead>
+<tbody>
+<tr><td>1 — Validação</td><td>Fundadores em home office, serviços terceirizados, foco em um hub-piloto.</td></tr>
+<tr><td>2 — Expansão</td><td>Replicação por hubs europeus, operação central remota.</td></tr>
+<tr><td>3 — Híbrida</td><td>Equipes adicionais e uso de coworking/bases flexíveis em mercados prioritários.</td></tr>
+<tr><td>4 — Madura</td><td>Escritórios e infraestrutura própria conforme demanda recorrente e capital.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>4.2 Processos operacionais</h3>
+<p>A <strong>jornada do usuário</strong> segue etapas padronizadas: entrada na plataforma, criação do perfil de mobilidade, organização da demanda, recomendação inicial, definição do nível de serviço, conexão com profissionais e acompanhamento. A <strong>jornada do profissional</strong> segue: prospecção, cadastro e verificação, definição de regras comerciais, ativação, distribuição de contatos qualificados e monitoramento. A <strong>jornada do vendedor</strong> acrescenta: cadastro do imóvel, curadoria e publicação (listagem in-house) ou encaminhamento a portal parceiro, e acompanhamento do interesse qualificado. A padronização reduz repetição de informações e perda de contexto.</p>
+
+<h3>4.3 Capacidade produtiva e controle de "estoque"</h3>
+<p>Por ser uma plataforma SaaS, a Liora não possui estoque físico. O equivalente operacional é duplo: a <strong>capacidade da plataforma</strong> (escala da nuvem, dimensionada para o volume de ativações, assinantes e contatos previstos) e o <strong>inventário de oferta e rede</strong> — imóveis listados (in-house e via portais parceiros), profissionais ativos e verificados, e conteúdo local por hub. O controle de "estoque" consiste em manter esse inventário curado, atualizado e verificado, evitando listagens vencidas, profissionais inativos ou conteúdo desatualizado.</p>
+
+<h3>4.4 Infraestrutura</h3>
+<p>A infraestrutura segue três regras: <em>capital leve antes da validação</em>, <em>custo que acompanha a receita</em> e <em>segurança e GDPR como pré-requisito</em>. Divide-se em quatro camadas.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 8. Camadas de infraestrutura.</caption>
+<thead><tr><th>Camada</th><th>Conteúdo</th></tr></thead>
+<tbody>
+<tr><td>Tecnologia e nuvem</td><td>Web/app, banco relacional, armazenamento de objetos, motor de recomendação versionado, painéis do profissional e do vendedor, observabilidade e separação de ambientes.</td></tr>
+<tr><td>Dados e integrações</td><td>Dados de bairro e mercado, pagamentos, verificação de credenciais, CRM, tradução, mapas e integração com portais; perfil único como ativo proprietário.</td></tr>
+<tr><td>Segurança e compliance</td><td>GDPR desde o início, controle de acesso, criptografia, acordos de tratamento de dados com fornecedores e plano de resposta a incidentes.</td></tr>
+<tr><td>Presença física</td><td>100% remoto (Ano 1); coworking sob demanda (Anos 2–3); bases flexíveis (Anos 4–5); escritório próprio só após o Ano 5.</td></tr>
+</tbody>
+</table>
+</div>
+<p>A infraestrutura cresce com a receita, situando-se entre 9% e 12% dela nos Anos 3 a 5 (9% no Ano 5), o que preserva a margem bruta de ≈ 80%.</p>
+<p><strong>Destino do investimento em infraestrutura própria (a partir do Ano 5).</strong> Quando justificado por demanda recorrente e caixa, o investimento se destina a: (i) escritórios e bases operacionais nos hubs validados; (ii) equipes locais de operação, curadoria e atendimento por mercado; (iii) internalização da plataforma de dados (do consumo de provedores externos para base proprietária); (iv) hardening de segurança, redundância e certificações; e (v) espaços físicos institucionais — pontos de atendimento para o Gheller Private e <em>salas e espaços comerciais</em> que conectam a oferta de imóveis comerciais à demanda de profissionais (escritórios para advogados, contadores e consultores próximos de seus clientes).</p>
+
+<h3>4.5 Plano de contratações e treinamentos</h3>
+<p>Na fase inicial, a empresa prioriza terceiros para atividades que não exigem controle interno permanente (contabilidade, jurídico local, design, marketing de performance, tradução, auditorias de segurança). As primeiras contratações — <em>Customer Success</em>, <em>Partner Success</em>, curadoria de listagens, produto/UX e apoio técnico — seguem o gargalo real da operação. No Ano 1 o aprendizado ocorre por documentação interna e troca entre os sócios; especializações pagas surgem a partir do Ano 2. O detalhamento está no Plano de Recursos Humanos.</p>
+</div>
+
+<!-- ===================== 5. PLANO DE RECURSOS HUMANOS ===================== -->
+<div class="section">
+<h2>5. Plano de Recursos Humanos</h2>
+
+<h3>5.1 Estrutura organizacional, cargos e responsabilidades</h3>
+<p>A equipe inicial é formada por cinco fundadores com funções executivas acumuladas, arranjo adequado à fase de validação. Conforme a empresa cresce, as funções são desmembradas em cargos especializados.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 9. Equipe fundadora, cargos e responsabilidades.</caption>
+<thead><tr><th>Pessoa</th><th>Cargo</th><th>Responsabilidades principais</th></tr></thead>
+<tbody>
+<tr><td>Lucas</td><td>CEO / CPO</td><td>Direção geral, estratégia, visão de produto e experiência do usuário.</td></tr>
+<tr><td>Pedro</td><td>CTO / CISO</td><td>Arquitetura, desenvolvimento, segurança da informação e infraestrutura.</td></tr>
+<tr><td>Julia</td><td>CFO / CLO</td><td>Planejamento financeiro, controles, contratos e conformidade jurídica.</td></tr>
+<tr><td>Juliane</td><td>CMO / CSO</td><td>Marketing, aquisição, posicionamento, estratégia comercial e parcerias.</td></tr>
+<tr><td>Murilo</td><td>COO / CHRO</td><td>Operação diária, processos, fornecedores, parceiros e gestão de pessoas.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>5.2 Quadro de pessoal</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 10. Evolução do quadro de pessoal.</caption>
+<thead><tr><th>Quadro</th><th class="num">Ano 1</th><th class="num">Ano 2</th><th class="num">Ano 3</th><th class="num">Ano 4</th><th class="num">Ano 5</th></tr></thead>
+<tbody>
+<tr><td>Fundadores</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">5</td><td class="num">5</td></tr>
+<tr><td>Contratados</td><td class="num">0</td><td class="num">1</td><td class="num">4</td><td class="num">7</td><td class="num">10</td></tr>
+<tr class="total"><td>Total</td><td class="num">5</td><td class="num">6</td><td class="num">9</td><td class="num">12</td><td class="num">15</td></tr>
+</tbody>
+</table>
+</div>
+<p>A receita por colaborador no Ano 5 (≈ € 148.000) é saudável para uma plataforma remota e enxuta.</p>
+
+<h3>5.3 Salários</h3>
+<p>A remuneração dos fundadores é <em>enxuta</em> na fase inicial e posicionada na faixa do salário mínimo legal dos hubs ou acima dela — os Países Baixos e a Alemanha definem o piso por hora (em 2026, € 14,71/h e € 13,90/h, o equivalente a aproximadamente € 2.300–2.550 por mês em tempo integral). É estruturada como pró-labore de gestão, diferenciada por cargo, com provisão de 10% na fase inicial; encargos plenos de empregador (≈ 25%) incidem sobre os contratados a partir do Ano 2.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 11. Remuneração mensal dos fundadores.</caption>
+<thead><tr><th>Pessoa</th><th>Cargo</th><th class="num">Remuneração mensal</th></tr></thead>
+<tbody>
+<tr><td>Lucas</td><td>CEO / CPO</td><td class="num">€ 2.800</td></tr>
+<tr><td>Pedro</td><td>CTO / CISO</td><td class="num">€ 2.600</td></tr>
+<tr><td>Julia</td><td>CFO / CLO</td><td class="num">€ 2.500</td></tr>
+<tr><td>Juliane</td><td>CMO / CSO</td><td class="num">€ 2.350</td></tr>
+<tr><td>Murilo</td><td>COO / CHRO</td><td class="num">€ 2.250</td></tr>
+<tr class="total"><td>Total mensal bruto</td><td></td><td class="num">€ 12.500</td></tr>
+</tbody>
+</table>
+</div>
+<p>O custo bruto anual dos fundadores é € 150.000; com provisão de 10%, o custo de pessoal dos fundadores no Ano 1 é € 165.000.</p>
+
+<h3>5.4 Evolução do custo de pessoal e treinamentos</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 12. Evolução do custo de Recursos Humanos (€).</caption>
+<thead><tr><th>Categoria</th><th class="num">Ano 1</th><th class="num">Ano 2</th><th class="num">Ano 3</th><th class="num">Ano 4</th><th class="num">Ano 5</th></tr></thead>
+<tbody>
+<tr><td>Remuneração + encargos</td><td class="num">165.000</td><td class="num">225.000</td><td class="num">365.000</td><td class="num">575.000</td><td class="num">830.000</td></tr>
+<tr><td>Especialização e desenvolvimento</td><td class="num">0</td><td class="num">8.000</td><td class="num">15.000</td><td class="num">25.000</td><td class="num">45.000</td></tr>
+<tr><td>Recrutamento, ferramentas, equip.</td><td class="num">3.000</td><td class="num">12.000</td><td class="num">25.000</td><td class="num">35.000</td><td class="num">60.000</td></tr>
+<tr class="total"><td>Total de RH</td><td class="num">168.000</td><td class="num">245.000</td><td class="num">405.000</td><td class="num">635.000</td><td class="num">935.000</td></tr>
+</tbody>
+</table>
+</div>
+<p>As contratações seguem a demanda (volume de usuários, profissionais e listagens, complexidade operacional e entrada de capital). A cultura reflete a marca — clareza, confiança, contexto, responsabilidade e colaboração remota. A avaliação de desempenho é simples no início, conectada a indicadores reais por área, evoluindo para avaliações trimestrais com metas na fase de crescimento.</p>
+</div>
+
+<!-- ===================== 6. PLANO FINANCEIRO ===================== -->
+<div class="section">
+<h2>6. Plano Financeiro</h2>
+<p>Horizonte de cinco anos, moeda-base euro. O cenário-base não inclui receita do Gheller Private, tratado como potencial adicional.</p>
+
+<h3>6.1 Premissas de volume e preço</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 13. Premissas de volume.</caption>
+<thead><tr><th>Fonte (volume)</th><th class="num">Ano 1</th><th class="num">Ano 2</th><th class="num">Ano 3</th><th class="num">Ano 4</th><th class="num">Ano 5</th></tr></thead>
+<tbody>
+<tr><td>Ativações Liora (base)</td><td class="num">120</td><td class="num">550</td><td class="num">1.600</td><td class="num">3.500</td><td class="num">6.500</td></tr>
+<tr><td>Assinantes médios Personnalisé</td><td class="num">8</td><td class="num">28</td><td class="num">70</td><td class="num">140</td><td class="num">260</td></tr>
+<tr><td>Profissionais em plano mensal</td><td class="num">6</td><td class="num">22</td><td class="num">55</td><td class="num">110</td><td class="num">210</td></tr>
+<tr><td>Contatos comerciais avulsos</td><td class="num">60</td><td class="num">240</td><td class="num">700</td><td class="num">1.600</td><td class="num">3.200</td></tr>
+<tr><td>Conversões (comissão)</td><td class="num">15</td><td class="num">75</td><td class="num">230</td><td class="num">540</td><td class="num">1.150</td></tr>
+<tr><td>Redirecionamentos convertidos</td><td class="num">40</td><td class="num">200</td><td class="num">650</td><td class="num">1.500</td><td class="num">3.000</td></tr>
+<tr><td>Listagens in-house</td><td class="num">20</td><td class="num">120</td><td class="num">400</td><td class="num">950</td><td class="num">2.000</td></tr>
+<tr><td>Contratos de licenciamento de dados</td><td class="num">0</td><td class="num">0</td><td class="num">3</td><td class="num">8</td><td class="num">16</td></tr>
+</tbody>
+</table>
+</div>
+<p>Preços: ativação € 29; Personnalisé € 149/mês; plano profissional € 249/mês; contato avulso € 45; comissão € 250; afiliação ≈ € 50/conversão; listagem ≈ € 120; contrato de dados ≈ € 7.500.</p>
+
+<h3>6.2 Receitas</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 14. Receita por linha (€).</caption>
+<thead><tr><th>Linha</th><th class="num">Ano 1</th><th class="num">Ano 2</th><th class="num">Ano 3</th><th class="num">Ano 4</th><th class="num">Ano 5</th></tr></thead>
+<tbody>
+<tr><td>Ativações (base)</td><td class="num">3.480</td><td class="num">15.950</td><td class="num">46.400</td><td class="num">101.500</td><td class="num">188.500</td></tr>
+<tr><td>Personnalisé</td><td class="num">14.304</td><td class="num">50.064</td><td class="num">125.160</td><td class="num">250.320</td><td class="num">464.880</td></tr>
+<tr><td>Plano profissional</td><td class="num">17.928</td><td class="num">65.736</td><td class="num">164.340</td><td class="num">328.680</td><td class="num">627.480</td></tr>
+<tr><td>Contatos avulsos</td><td class="num">2.700</td><td class="num">10.800</td><td class="num">31.500</td><td class="num">72.000</td><td class="num">144.000</td></tr>
+<tr><td>Comissões</td><td class="num">3.750</td><td class="num">18.750</td><td class="num">57.500</td><td class="num">135.000</td><td class="num">287.500</td></tr>
+<tr><td>Afiliação (redirecionamento)</td><td class="num">2.000</td><td class="num">10.000</td><td class="num">32.500</td><td class="num">75.000</td><td class="num">150.000</td></tr>
+<tr><td>Listagens in-house</td><td class="num">2.400</td><td class="num">14.400</td><td class="num">48.000</td><td class="num">114.000</td><td class="num">240.000</td></tr>
+<tr><td>Licenciamento de dados</td><td class="num">0</td><td class="num">0</td><td class="num">22.500</td><td class="num">60.000</td><td class="num">120.000</td></tr>
+<tr class="total"><td>Receita total</td><td class="num">46.562</td><td class="num">185.700</td><td class="num">527.900</td><td class="num">1.136.500</td><td class="num">2.222.360</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure><div class="chart" id="ch-rev"></div>
+<figcaption><b>Figura 8.</b> Composição da receita por linha (€ mil). A receita recorrente (planos profissionais e Personnalisé) é o motor; afiliação, listagens e licenciamento ampliam a base.</figcaption></figure>
+
+<h3>6.3 Custos</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 15. Custos operacionais por categoria (€).</caption>
+<thead><tr><th>Categoria</th><th class="num">Ano 1</th><th class="num">Ano 2</th><th class="num">Ano 3</th><th class="num">Ano 4</th><th class="num">Ano 5</th></tr></thead>
+<tbody>
+<tr><td>Recursos Humanos</td><td class="num">168.000</td><td class="num">245.000</td><td class="num">405.000</td><td class="num">635.000</td><td class="num">935.000</td></tr>
+<tr><td>Tecnologia e nuvem</td><td class="num">12.000</td><td class="num">30.000</td><td class="num">65.000</td><td class="num">125.000</td><td class="num">205.000</td></tr>
+<tr><td>Marketing e vendas</td><td class="num">12.000</td><td class="num">50.000</td><td class="num">122.000</td><td class="num">225.000</td><td class="num">395.000</td></tr>
+<tr><td>Jurídico e compliance</td><td class="num">10.000</td><td class="num">20.000</td><td class="num">40.000</td><td class="num">65.000</td><td class="num">100.000</td></tr>
+<tr><td>Dados, conteúdo e operação</td><td class="num">8.000</td><td class="num">24.000</td><td class="num">58.000</td><td class="num">110.000</td><td class="num">210.000</td></tr>
+<tr><td>Administrativo, viagens, coworking</td><td class="num">4.000</td><td class="num">10.000</td><td class="num">24.000</td><td class="num">52.000</td><td class="num">110.000</td></tr>
+<tr class="total"><td>Custo total</td><td class="num">214.000</td><td class="num">379.000</td><td class="num">714.000</td><td class="num">1.212.000</td><td class="num">1.955.000</td></tr>
+</tbody>
+</table>
+</div>
+<p>Marketing representa entre 18% e 27% da receita ao longo do período, recuando conforme a base cresce — faixa coerente com um marketplace de dois lados em expansão.</p>
+
+<h3>6.4 Demonstração de resultados</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 16. Demonstração de resultados (€).</caption>
+<thead><tr><th>Indicador</th><th class="num">Ano 1</th><th class="num">Ano 2</th><th class="num">Ano 3</th><th class="num">Ano 4</th><th class="num">Ano 5</th></tr></thead>
+<tbody>
+<tr><td>Receita total</td><td class="num">46.562</td><td class="num">185.700</td><td class="num">527.900</td><td class="num">1.136.500</td><td class="num">2.222.360</td></tr>
+<tr><td>Custo total</td><td class="num">214.000</td><td class="num">379.000</td><td class="num">714.000</td><td class="num">1.212.000</td><td class="num">1.955.000</td></tr>
+<tr class="total"><td>Resultado operacional</td><td class="num neg">-167.438</td><td class="num neg">-193.300</td><td class="num neg">-186.100</td><td class="num neg">-75.500</td><td class="num pos">+267.360</td></tr>
+</tbody>
+</table>
+</div>
+
+<figure><div class="chart" id="ch-dre"></div>
+<figcaption><b>Figura 9.</b> Receita × custo × resultado operacional (€ mil). O equilíbrio é cruzado no Ano 5.</figcaption></figure>
+
+<h3>6.5 Capital e estrutura de captação</h3>
+<p>A necessidade de capital até o equilíbrio é de <strong>€ 950.000</strong>, captada em duas rodadas. O <em>ask</em> imediato é o Seed de € 450.000, que cobre o setup pré-operacional e o déficit dos Anos 1–2. A Series A financia a escala dos Anos 3–4.</p>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 17. Estrutura de captação.</caption>
+<thead><tr><th>Item</th><th class="num">Valor (€)</th></tr></thead>
+<tbody>
+<tr><td>Setup pré-operacional (MVP, jurídico, marca, dados, ferramentas)</td><td class="num">33.000</td></tr>
+<tr><td>Rodada Seed (imediata)</td><td class="num">450.000</td></tr>
+<tr><td>Rodada Series A (fim do Ano 2 / início do Ano 3)</td><td class="num">500.000</td></tr>
+<tr class="total"><td>Capital total até o equilíbrio</td><td class="num">950.000</td></tr>
+</tbody>
+</table>
+</div>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 18. Uso dos recursos do Seed (€ 450.000).</caption>
+<thead><tr><th>Destino</th><th class="num">Valor (€)</th><th class="num">%</th></tr></thead>
+<tbody>
+<tr><td>Setup pré-operacional (MVP e produto)</td><td class="num">33.000</td><td class="num">7%</td></tr>
+<tr><td>Equipe e primeiras contratações (runway Anos 1–2)</td><td class="num">300.000</td><td class="num">67%</td></tr>
+<tr><td>Marketing e validação por hubs</td><td class="num">60.000</td><td class="num">13%</td></tr>
+<tr><td>Tecnologia, dados e compliance</td><td class="num">42.000</td><td class="num">9%</td></tr>
+<tr><td>Reserva de segurança</td><td class="num">15.000</td><td class="num">4%</td></tr>
+<tr class="total"><td>Total</td><td class="num">450.000</td><td class="num">100%</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>6.6 Fluxo de caixa</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 19. Fluxo de caixa acumulado (€).</caption>
+<thead><tr><th>Item</th><th class="num">Movimento</th><th class="num">Caixa acumulado</th></tr></thead>
+<tbody>
+<tr><td>Seed</td><td class="num">+450.000</td><td class="num">450.000</td></tr>
+<tr><td>Setup pré-operacional</td><td class="num">-33.000</td><td class="num">417.000</td></tr>
+<tr><td>Resultado Ano 1</td><td class="num">-167.438</td><td class="num">249.562</td></tr>
+<tr><td>Resultado Ano 2</td><td class="num">-193.300</td><td class="num"><strong>56.262</strong></td></tr>
+<tr><td>Series A (entrada no Ano 3)</td><td class="num">+500.000</td><td class="num">556.262</td></tr>
+<tr><td>Resultado Ano 3</td><td class="num">-186.100</td><td class="num">370.162</td></tr>
+<tr><td>Resultado Ano 4</td><td class="num">-75.500</td><td class="num">294.662</td></tr>
+<tr><td>Resultado Ano 5</td><td class="num">+267.360</td><td class="num">562.022</td></tr>
+</tbody>
+</table>
+</div>
+<figure><div class="chart" id="ch-cash"></div>
+<figcaption><b>Figura 10.</b> Caixa ao fim de cada ano (€ mil). O ponto mais baixo é o fim do Ano 2 (€ 56.262), antes da Series A — por isso a captação ocorre ainda no Ano 2.</figcaption></figure>
+
+<h3>6.7 Ponto de equilíbrio</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 20. Ponto de equilíbrio (Ano 5).</caption>
+<thead><tr><th>Indicador</th><th class="num">Valor (€)</th></tr></thead>
+<tbody>
+<tr><td>Custo operacional anual</td><td class="num">1.955.000</td></tr>
+<tr><td>Custo operacional mensal médio</td><td class="num">162.917</td></tr>
+<tr><td>Receita mensal média</td><td class="num">185.197</td></tr>
+<tr><td>Receita mensal de equilíbrio aproximada</td><td class="num">163.000</td></tr>
+</tbody>
+</table>
+</div>
+<p>Primeiro ano operacionalmente positivo: <strong>Ano 5</strong>, quando a receita mensal média supera o custo mensal médio.</p>
+
+<h3>6.8 Unidade econômica e retorno</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 21. Indicadores de unidade econômica (estimativa de planejamento).</caption>
+<thead><tr><th>Indicador</th><th class="num">Estimativa</th></tr></thead>
+<tbody>
+<tr><td>Margem bruta</td><td class="num">≈ 80%</td></tr>
+<tr><td>LTV Personnalisé (€ 149 × ≈ 5 meses)</td><td class="num">≈ € 745</td></tr>
+<tr><td>LTV profissional (€ 249 × ≈ 18 meses)</td><td class="num">≈ € 4.482</td></tr>
+<tr><td>CAC usuário / profissional</td><td class="num">€ 25–60 / € 300–600</td></tr>
+<tr><td>LTV/CAC usuário / profissional</td><td class="num">≈ 10× / ≈ 7×</td></tr>
+<tr><td>Payback de CAC (profissional)</td><td class="num">2–3 mensalidades</td></tr>
+</tbody>
+</table>
+</div>
+<p>O retorno no cenário-base vem de <strong>valor patrimonial</strong>, não de dividendos iniciais. No Ano 5, a receita recorrente (Personnalisé + planos profissionais) é ≈ € 1.092.000. Uma avaliação de 3 a 5 vezes a receita situa o valor da empresa entre ≈ € 6,5 e € 11 milhões ao fim do Ano 5 (faixa conservadora de referência: € 6,5–8,5 milhões).</p>
+
+<h3>6.9 Análise de cenários (Ano 5)</h3>
+<div class="tbl-wrap">
+<table class="tbl">
+<caption>Tabela 22. Cenários para o Ano 5 (€).</caption>
+<thead><tr><th>Cenário</th><th class="num">Receita</th><th class="num">Custo</th><th class="num">Resultado</th><th>Leitura</th></tr></thead>
+<tbody>
+<tr><td>Conservador</td><td class="num">1.750.000</td><td class="num">1.800.000</td><td class="num neg">-50.000</td><td>Conversão mais lenta; exige extensão de runway.</td></tr>
+<tr><td>Base</td><td class="num">2.222.360</td><td class="num">1.955.000</td><td class="num pos">+267.360</td><td>Equilíbrio no Ano 5, unidade econômica saudável.</td></tr>
+<tr><td>Otimista</td><td class="num">2.750.000</td><td class="num">2.100.000</td><td class="num pos">+650.000</td><td>Conversão/retenção acima do plano; entrada do Gheller Private.</td></tr>
+</tbody>
+</table>
+</div>
+
+<h3>6.10 Riscos e mitigações</h3>
+<ul>
+<li><strong>Conversão abaixo do plano</strong> — expansão por fases; acelerar um hub apenas com rede mínima de profissionais e imóveis.</li>
+<li><strong>Custo de aquisição acima do previsto</strong> — priorizar canais orgânicos, indicação e o redirecionamento a portais.</li>
+<li><strong>Maturação do produto de dados</strong> — o licenciamento depende de volume e consolidação; por isso entra apenas a partir do Ano 3, de forma conservadora.</li>
+<li><strong>Dependência de capital</strong> — captação escalonada com marcos claros antes da Series A.</li>
+<li><strong>Câmbio e regulação</strong> — moeda-base euro; compliance e GDPR desde o início, com dados sempre agregados e anonimizados.</li>
+</ul>
+</div>
+
+<!-- ===================== 7. CONCLUSÕES ===================== -->
+<div class="section">
+<h2>7. Conclusões</h2>
+<p>A Liora responde a uma dor concreta e mensurável: transformar o direito ou a intenção de mudar de país em uma jornada organizada, segura e executável. O diferencial é o perfil único de mobilidade, que cria valor para quem se muda, para os profissionais e para quem oferta imóveis, ao reduzir retrabalho e melhorar o contexto de cada contato.</p>
+<p>O plano combina uma oportunidade ampla com uma operação disciplinada. A monetização cobre os dois lados do mercado — demanda e oferta — por assinaturas, planos e comissões, pelo redirecionamento qualificado a portais, por listagens próprias e pelo licenciamento de dados de demanda. No cenário-base, o investimento se concentra nos Anos 1 a 4, com <strong>equilíbrio operacional no Ano 5</strong> e necessidade total de capital de € 950.000, captada em duas rodadas (<em>ask</em> imediato de € 450.000). O ponto de maior atenção de caixa é o fim do Ano 2, o que torna a Series A um marco planejado.</p>
+<p>A viabilidade depende menos de crescimento acelerado e mais de execução: validação por hubs, controle de custos, construção gradual da rede de profissionais e de imóveis, e disciplina de caixa. O Gheller Private permanece como potencial adicional. Com execução consistente, a Gheller &amp; Co. pode transformar a Liora em uma operação escalável e defensável no mercado de mobilidade residencial internacional.</p>
+</div>
+
+<!-- ===================== REFERÊNCIAS ===================== -->
+<div class="section refs">
+<h2>Referências</h2>
+<ol>
+<li>EUROSTAT. <em>Housing in Europe — 2025 edition</em>. Comissão Europeia, 2025.</li>
+<li>EUROSTAT. <em>Young people — housing conditions</em>. Comissão Europeia, 2024.</li>
+<li>ERASMUS+. <em>Erasmus to Erasmus+: history, funding and future</em>. Comissão Europeia, 2024.</li>
+<li>YOUR EUROPE. <em>Residence rights for EU nationals</em>. União Europeia, 2024.</li>
+<li>EUROSTAT. <em>Minimum wage statistics</em>. Comissão Europeia, 2025–2026.</li>
+</ol>
+</div>
+
+<div class="section">
+<h2>Material Suplementar</h2>
+<ul>
+<li><strong>Protótipo interativo da plataforma (HTML)</strong> — demonstração da experiência da Liora (perfil de mobilidade, recomendação de bairros, conexão com profissionais).</li>
+<li><strong>Instrumentos de pesquisa</strong> — questionários de usuários finais (15 questões) e de profissionais parceiros (15 questões), base de validação de 100 respondentes (75 usuários e 25 profissionais).</li>
+</ul>
+</div>
+
+</div>
+<div class="print-foot">Liora · Gheller &amp; Co. — Plano de Negócios · Documento confidencial</div>
+
+<script>
+/* ====================== MOTOR DE GRÁFICOS (SVG) ====================== */
+const C={ink:'#2B2722',inkSoft:'#6B6357',inkFaint:'#9A9183',line:'#C9BFAE',lineSoft:'#DED6C6',
+  cream:'#F6F2EA',stone:'#E9E3D7',accent:'#5A6B57',accentDeep:'#495943',accentSoft:'#E5E9DF',
+  gold:'#9A7B45',goldSoft:'#EFE6D4',terra:'#9A4B3A',terraSoft:'#E7CFC8'};
+const FONT='font-family:Helvetica Neue,Arial,sans-serif';
+function set(id,svg){const n=document.getElementById(id); if(n) n.innerHTML=svg;}
+function fmt(n){return n.toLocaleString('de-DE');}
+function hex2rgb(h){h=h.replace('#','');return[parseInt(h.slice(0,2),16),parseInt(h.slice(2,4),16),parseInt(h.slice(4,6),16)];}
+function lerp(a,b,t){const A=hex2rgb(a),B=hex2rgb(b);return'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')+')';}
+
+/* ---- barras horizontais ---- */
+function hbar(id,items,opt={}){
+  const max=opt.max||Math.max(...items.map(d=>d.value));
+  const W=760,rowH=33,padL=opt.padL||236,padR=54,padT=8,padB=26,n=items.length;
+  const H=padT+padB+n*rowH,plotW=W-padL-padR;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`;
+  for(let g=0;g<=max;g+=opt.grid||20){const x=padL+g/max*plotW;
+    s+=`<line x1="${x}" y1="${padT}" x2="${x}" y2="${padT+n*rowH}" stroke="${C.lineSoft}" stroke-width="1"/>`;
+    s+=`<text x="${x}" y="${padT+n*rowH+16}" text-anchor="middle" font-size="10" fill="${C.inkFaint}">${g}</text>`;}
+  items.forEach((d,i)=>{const y=padT+i*rowH+rowH/2,bw=d.value/max*plotW;
+    s+=`<text x="${padL-10}" y="${y+4}" text-anchor="end" font-size="11.5" fill="${C.ink}">${d.label}</text>`;
+    s+=`<rect x="${padL}" y="${y-10}" width="${bw}" height="20" rx="2" fill="${d.color||C.accent}"/>`;
+    s+=`<text x="${padL+bw+7}" y="${y+4}" font-size="11" font-weight="700" fill="${C.inkSoft}">${d.value}${opt.unit||'%'}</text>`;});
+  set(id,s+'</svg>');
+}
+
+/* ---- barras divergentes (Likert 1-5) ---- */
+function likert(id,items){
+  const colors=[C.terra,'#C68B7C',C.stone,'#9CB293',C.accent];
+  const W=760,rowH=42,padL=210,padR=20,padT=34,padB=14,n=items.length;
+  const H=padT+padB+n*rowH,plotW=W-padL-padR,half=plotW/2,xc=padL+half;
+  let maxL=0,maxR=0;
+  items.forEach(d=>{maxL=Math.max(maxL,d.d[0]+d.d[1]+d.d[2]/2);maxR=Math.max(maxR,d.d[2]/2+d.d[3]+d.d[4]);});
+  const scale=half/(Math.max(maxL,maxR)*1.04);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`;
+  // legenda
+  const lg=['1 (baixo)','2','3','4','5 (alto)'];let lx=padL;
+  lg.forEach((t,k)=>{s+=`<rect x="${lx}" y="6" width="11" height="11" fill="${colors[k]}"/><text x="${lx+15}" y="15" font-size="9.5" fill="${C.inkSoft}">${t}</text>`;lx+=k===0?78:k===4?0:34;});
+  s+=`<line x1="${xc}" y1="${padT-4}" x2="${xc}" y2="${padT+n*rowH}" stroke="${C.inkFaint}" stroke-width="1" stroke-dasharray="3,2"/>`;
+  items.forEach((d,i)=>{const y=padT+i*rowH+rowH/2;
+    s+=`<text x="${padL-12}" y="${y+4}" text-anchor="end" font-size="10.5" fill="${C.ink}">${d.label}</text>`;
+    let x=xc-(d.d[0]+d.d[1]+d.d[2]/2)*scale;
+    d.d.forEach((p,k)=>{const w=p*scale;
+      s+=`<rect x="${x}" y="${y-11}" width="${w}" height="22" fill="${colors[k]}"/>`;
+      if(p>=9)s+=`<text x="${x+w/2}" y="${y+4}" text-anchor="middle" font-size="9.5" fill="${k===2?C.ink:'#fff'}">${p}</text>`;
+      x+=w;});});
+  set(id,s+'</svg>');
+}
+
+/* ---- donut ---- */
+function donut(id,data){
+  const W=760,H=300,cx=170,cy=150,r=110,ri=58,total=data.reduce((a,d)=>a+d.value,0);
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`,a0=-Math.PI/2;
+  data.forEach(d=>{const a1=a0+d.value/total*2*Math.PI;
+    const x0=cx+r*Math.cos(a0),y0=cy+r*Math.sin(a0),x1=cx+r*Math.cos(a1),y1=cy+r*Math.sin(a1);
+    const xi0=cx+ri*Math.cos(a1),yi0=cy+ri*Math.sin(a1),xi1=cx+ri*Math.cos(a0),yi1=cy+ri*Math.sin(a0);
+    const big=(a1-a0)>Math.PI?1:0;
+    s+=`<path d="M${x0} ${y0} A${r} ${r} 0 ${big} 1 ${x1} ${y1} L${xi0} ${yi0} A${ri} ${ri} 0 ${big} 0 ${xi1} ${yi1} Z" fill="${d.color}"/>`;
+    a0=a1;});
+  // legenda
+  let ly=46;data.forEach(d=>{const pc=Math.round(d.value/total*100);
+    s+=`<rect x="350" y="${ly-10}" width="12" height="12" rx="2" fill="${d.color}"/>`;
+    s+=`<text x="368" y="${ly}" font-size="11.5" fill="${C.ink}">${d.label}</text>`;
+    s+=`<text x="745" y="${ly}" text-anchor="end" font-size="11.5" font-weight="700" fill="${C.inkSoft}">${d.value}%</text>`;ly+=27;});
+  set(id,s+'</svg>');
+}
+
+/* ---- radar / hexagonal ---- */
+function radar(id,axes,series,max=4){
+  const W=760,H=420,cx=300,cy=210,R=150,n=axes.length;
+  const ang=i=>-Math.PI/2+i*2*Math.PI/n;
+  const pt=(i,v)=>[cx+R*v/max*Math.cos(ang(i)),cy+R*v/max*Math.sin(ang(i))];
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`;
+  for(let g=1;g<=max;g++){let p='';for(let i=0;i<n;i++){const[x,y]=pt(i,g);p+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);}
+    s+=`<path d="${p}Z" fill="none" stroke="${C.lineSoft}" stroke-width="1"/>`;}
+  for(let i=0;i<n;i++){const[x,y]=pt(i,max);s+=`<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="${C.lineSoft}" stroke-width="1"/>`;
+    const[lx,ly]=pt(i,max*1.16);s+=`<text x="${lx}" y="${ly}" text-anchor="${Math.abs(lx-cx)<14?'middle':(lx<cx?'end':'start')}" font-size="9.5" fill="${C.inkSoft}">${axes[i]}</text>`;}
+  series.forEach(se=>{let p='';se.values.forEach((v,i)=>{const[x,y]=pt(i,v);p+=(i?'L':'M')+x.toFixed(1)+' '+y.toFixed(1);});
+    s+=`<path d="${p}Z" fill="${se.color}" fill-opacity="0.16" stroke="${se.color}" stroke-width="2"/>`;
+    se.values.forEach((v,i)=>{const[x,y]=pt(i,v);s+=`<circle cx="${x}" cy="${y}" r="2.6" fill="${se.color}"/>`;});});
+  let ly=40;series.forEach(se=>{s+=`<rect x="600" y="${ly-10}" width="13" height="13" rx="2" fill="${se.color}"/><text x="620" y="${ly}" font-size="11" fill="${C.ink}">${se.name}</text>`;ly+=24;});
+  set(id,s+'</svg>');
+}
+
+/* ---- heatmap matriz competitiva ---- */
+function heatmap(id,rows,cols,M,totals){
+  const W=760,padL=210,padT=86,cw=(W-padL-8)/cols.length,ch=30,n=rows.length;
+  const H=padT+n*ch+58;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`;
+  cols.forEach((c,j)=>{const x=padL+j*cw+cw/2;
+    s+=`<text transform="translate(${x},${padT-8}) rotate(-32)" font-size="10" fill="${C.ink}" text-anchor="start">${c}</text>`;});
+  rows.forEach((rw,i)=>{const y=padT+i*ch;
+    s+=`<text x="${padL-8}" y="${y+ch/2+4}" text-anchor="end" font-size="10" fill="${C.ink}">${rw.label}</text>`;
+    rw.v.forEach((val,j)=>{const x=padL+j*cw,t=(val-1)/3,col=lerp(C.cream,C.accentDeep,t);
+      s+=`<rect x="${x}" y="${y}" width="${cw-2}" height="${ch-2}" fill="${col}"/>`;
+      s+=`<text x="${x+cw/2}" y="${y+ch/2+4}" text-anchor="middle" font-size="11" font-weight="600" fill="${t>0.5?'#fff':C.ink}">${val}</text>`;});});
+  const yT=padT+n*ch+8;
+  s+=`<text x="${padL-8}" y="${yT+18}" text-anchor="end" font-size="10.5" font-weight="700" fill="${C.accentDeep}">Total ponderado</text>`;
+  totals.forEach((t,j)=>{const x=padL+j*cw;s+=`<rect x="${x}" y="${yT}" width="${cw-2}" height="26" fill="${C.accentSoft}"/>`;
+    s+=`<text x="${x+cw/2}" y="${yT+18}" text-anchor="middle" font-size="11" font-weight="700" fill="${C.accentDeep}">${t}</text>`;});
+  set(id,s+'</svg>');
+}
+
+/* ---- barras verticais empilhadas ---- */
+function stacked(id,cats,series,opt={}){
+  const W=760,H=330,padL=46,padR=150,padT=14,padB=34,n=cats.length;
+  const plotW=W-padL-padR,plotH=H-padT-padB,bw=plotW/n*0.56;
+  const totals=cats.map((_,i)=>series.reduce((a,se)=>a+se.values[i],0));
+  const max=opt.max||Math.ceil(Math.max(...totals)/200)*200;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`;
+  for(let g=0;g<=max;g+=opt.step||500){const y=padT+plotH-g/max*plotH;
+    s+=`<line x1="${padL}" y1="${y}" x2="${padL+plotW}" y2="${y}" stroke="${C.lineSoft}"/>`;
+    s+=`<text x="${padL-6}" y="${y+3}" text-anchor="end" font-size="9.5" fill="${C.inkFaint}">${fmt(g)}</text>`;}
+  cats.forEach((c,i)=>{const x=padL+plotW/n*(i+0.5)-bw/2;let acc=0;
+    series.forEach(se=>{const h=se.values[i]/max*plotH,y=padT+plotH-acc/max*plotH-h;
+      s+=`<rect x="${x}" y="${y}" width="${bw}" height="${h}" fill="${se.color}"/>`;acc+=se.values[i];});
+    s+=`<text x="${x+bw/2}" y="${padT+plotH+16}" text-anchor="middle" font-size="10.5" fill="${C.ink}">${c}</text>`;
+    s+=`<text x="${x+bw/2}" y="${padT+plotH-acc/max*plotH-5}" text-anchor="middle" font-size="9" font-weight="700" fill="${C.inkSoft}">${fmt(Math.round(totals[i]))}</text>`;});
+  let ly=padT+8;series.forEach(se=>{s+=`<rect x="${W-padR+8}" y="${ly-9}" width="11" height="11" fill="${se.color}"/><text x="${W-padR+23}" y="${ly}" font-size="9.8" fill="${C.ink}">${se.name}</text>`;ly+=18;});
+  set(id,s+'</svg>');
+}
+
+/* ---- barras agrupadas com negativos ---- */
+function grouped(id,cats,series,opt={}){
+  const W=760,H=330,padL=52,padR=16,padT=16,padB=34,n=cats.length;
+  const plotW=W-padL-padR,plotH=H-padT-padB;
+  const ymin=opt.ymin,ymax=opt.ymax,span=ymax-ymin;
+  const Y=v=>padT+plotH-(v-ymin)/span*plotH;
+  const gw=plotW/n,bw=gw*0.74/series.length;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`;
+  for(let g=Math.ceil(ymin/500)*500;g<=ymax;g+=500){const y=Y(g);
+    s+=`<line x1="${padL}" y1="${y}" x2="${padL+plotW}" y2="${y}" stroke="${g===0?C.inkFaint:C.lineSoft}"/>`;
+    s+=`<text x="${padL-6}" y="${y+3}" text-anchor="end" font-size="9.5" fill="${C.inkFaint}">${fmt(g)}</text>`;}
+  cats.forEach((c,i)=>{const x0=padL+gw*i+gw*0.13;
+    series.forEach((se,k)=>{const v=se.values[i],x=x0+k*bw,yz=Y(0),yv=Y(v);
+      s+=`<rect x="${x}" y="${Math.min(yz,yv)}" width="${bw-2}" height="${Math.abs(yv-yz)}" fill="${se.color}"/>`;});
+    s+=`<text x="${padL+gw*(i+0.5)}" y="${padT+plotH+16}" text-anchor="middle" font-size="10.5" fill="${C.ink}">${c}</text>`;});
+  let lx=padL+10;series.forEach(se=>{s+=`<rect x="${lx}" y="${padT-4}" width="11" height="11" fill="${se.color}"/><text x="${lx+15}" y="${padT+5}" font-size="10" fill="${C.ink}">${se.name}</text>`;lx+=92;});
+  set(id,s+'</svg>');
+}
+
+/* ---- linha (caixa) ---- */
+function lineChart(id,cats,vals,opt={}){
+  const W=760,H=300,padL=52,padR=20,padT=22,padB=32,n=cats.length;
+  const plotW=W-padL-padR,plotH=H-padT-padB,ymin=opt.ymin||0,ymax=opt.ymax,span=ymax-ymin;
+  const X=i=>padL+plotW/(n-1)*i,Y=v=>padT+plotH-(v-ymin)/span*plotH;
+  let s=`<svg viewBox="0 0 ${W} ${H}" style="width:100%;${FONT}">`;
+  for(let g=ymin;g<=ymax;g+=opt.step||100){const y=Y(g);
+    s+=`<line x1="${padL}" y1="${y}" x2="${padL+plotW}" y2="${y}" stroke="${C.lineSoft}"/>`;
+    s+=`<text x="${padL-6}" y="${y+3}" text-anchor="end" font-size="9.5" fill="${C.inkFaint}">${fmt(g)}</text>`;}
+  let p='';vals.forEach((v,i)=>{p+=(i?'L':'M')+X(i)+' '+Y(v);});
+  s+=`<path d="${p}" fill="none" stroke="${C.accent}" stroke-width="2.4"/>`;
+  vals.forEach((v,i)=>{s+=`<circle cx="${X(i)}" cy="${Y(v)}" r="4" fill="${C.accent}"/>`;
+    s+=`<text x="${X(i)}" y="${Y(v)-9}" text-anchor="middle" font-size="10" font-weight="700" fill="${C.accentDeep}">${fmt(Math.round(v))}</text>`;
+    s+=`<text x="${X(i)}" y="${padT+plotH+16}" text-anchor="middle" font-size="10.5" fill="${C.ink}">${cats[i]}</text>`;});
+  set(id,s+'</svg>');
+}
+
+/* ====================== DADOS E RENDER ====================== */
+hbar('ch-dific',[
+  {label:'Encontrar moradia confiável',value:69},{label:'Entender bairros e regiões',value:55},
+  {label:'Entender contratos e documentação',value:49},{label:'Encontrar profissionais confiáveis',value:43},
+  {label:'Lidar com o idioma local',value:39},{label:'Comparar custos em outra moeda',value:35}],
+  {xlabel:'% dos usuários (N=75)'});
+
+likert('ch-likert',[
+  {label:'Dificuldade de moradia (usuários)',d:[3,7,20,40,31]},
+  {label:'Satisfação atual (usuários)',d:[17,32,33,13,4]},
+  {label:'Qualidade dos contatos (prof.)',d:[8,28,40,20,4]},
+  {label:'Contatos com info suficiente (prof.)',d:[20,36,28,12,4]},
+  {label:'Impacto da triagem (prof.)',d:[4,8,28,40,20]}]);
+
+hbar('ch-prof',[
+  {label:'Expectativas desalinhadas',value:68,color:C.gold},{label:'Falta de orçamento claro',value:64,color:C.gold},
+  {label:'Excesso de tempo em triagem',value:60,color:C.gold},{label:'Falta de prazo definido',value:52,color:C.gold},
+  {label:'Sem entendimento do mercado',value:48,color:C.gold},{label:'Baixa probabilidade de conversão',value:44,color:C.gold}],
+  {xlabel:'% dos profissionais (N=25)'});
+
+donut('ch-motivo',[
+  {label:'Trabalho',value:29,color:C.accent},{label:'Estudo',value:27,color:C.gold},
+  {label:'Qualidade de vida',value:13,color:C.accentDeep},{label:'Empreendimento',value:9,color:'#B79B6A'},
+  {label:'Compra/investimento',value:8,color:C.inkSoft},{label:'Reunião familiar',value:7,color:'#8DA086'},
+  {label:'Venda/reorganização',value:4,color:C.terra},{label:'Outro',value:3,color:C.inkFaint}]);
+
+heatmap('ch-heat',[
+  {label:'Cobertura e inventário',v:[1,4,3,3,4,2]},
+  {label:'Confiança e marca',v:[1,3,3,3,4,3]},
+  {label:'Experiência cross-border',v:[3,4,3,3,1,3]},
+  {label:'Qualidade da busca',v:[3,3,3,3,4,2]},
+  {label:'Informação de bairro',v:[4,2,2,2,2,3]},
+  {label:'Serviços profissionais',v:[3,1,1,1,2,4]},
+  {label:'Transparência de preços',v:[2,2,2,2,3,2]},
+  {label:'Suporte regulatório',v:[3,1,1,1,1,4]},
+  {label:'Continuidade de dados',v:[4,2,2,2,2,2]}],
+  ['Liora','HousingAny.','Spotahome','Uniplaces','Portais nac.','Relocation'],
+  null,['2,48','2,64','2,36','2,36','2,73','2,78']);
+
+radar('ch-radar',
+  ['Cobertura','Confiança','Cross-border','Busca','Bairro','Serv. prof.','Preços','Regulatório','Dados'],
+  [{name:'Liora',color:C.accent,values:[1,1,3,3,4,3,2,3,4]},
+   {name:'HousingAnywhere',color:C.gold,values:[4,3,4,3,2,1,2,1,2]},
+   {name:'Relocation agencies',color:C.terra,values:[2,3,3,2,3,4,2,4,2]}]);
+
+stacked('ch-rev',['Ano 1','Ano 2','Ano 3','Ano 4','Ano 5'],[
+  {name:'Plano profissional',color:C.accent,values:[17.928,65.736,164.34,328.68,627.48]},
+  {name:'Personnalisé',color:C.accentDeep,values:[14.304,50.064,125.16,250.32,464.88]},
+  {name:'Comissões',color:C.gold,values:[3.75,18.75,57.5,135,287.5]},
+  {name:'Listagens',color:'#B79B6A',values:[2.4,14.4,48,114,240]},
+  {name:'Afiliação',color:'#8DA086',values:[2,10,32.5,75,150]},
+  {name:'Ativações',color:C.inkSoft,values:[3.48,15.95,46.4,101.5,188.5]},
+  {name:'Contatos',color:C.line,values:[2.7,10.8,31.5,72,144]},
+  {name:'Licenciamento',color:C.terra,values:[0,0,22.5,60,120]}],
+  {max:2400,step:400});
+
+grouped('ch-dre',['Ano 1','Ano 2','Ano 3','Ano 4','Ano 5'],[
+  {name:'Receita',color:C.accent,values:[46.562,185.7,527.9,1136.5,2222.36]},
+  {name:'Custo',color:C.gold,values:[214,379,714,1212,1955]},
+  {name:'Resultado',color:C.terra,values:[-167.438,-193.3,-186.1,-75.5,267.36]}],
+  {ymin:-300,ymax:2400});
+
+lineChart('ch-cash',['Ano 1','Ano 2','Ano 3','Ano 4','Ano 5'],[249.562,56.262,370.162,294.662,562.022],
+  {ymin:0,ymax:600,step:100});
+</script>
+</body>
+</html>
